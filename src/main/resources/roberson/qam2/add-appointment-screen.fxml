@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="600.0" maxWidth="1200.0" minHeight="600.0" minWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddAppointmentScreen">
+    <children>
+        <Button layoutX="25.0" layoutY="561.0" mnemonicParsing="false" onAction="#onActionExit" text="Exit" />
+        <Button layoutX="1115.0" layoutY="561.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Delete" />
+        <Button layoutX="1045.0" layoutY="561.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Update" />
+        <Button layoutX="975.0" layoutY="561.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Add" />
+        <Button layoutX="25.0" layoutY="17.0" mnemonicParsing="false" onAction="#OnActionAppointments" prefHeight="26.0" prefWidth="95.0" text="Appointments" />
+        <Button layoutX="235.0" layoutY="17.0" mnemonicParsing="false" onAction="#OnActionReports" prefHeight="26.0" prefWidth="95.0" text="Reports" />
+        <Button layoutX="130.0" layoutY="17.0" mnemonicParsing="false" onAction="#OnActionCustomers" prefHeight="26.0" prefWidth="95.0" text="Customers" />
+    </children>
+</AnchorPane>
