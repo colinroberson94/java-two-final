@@ -1,5 +1,6 @@
 package controller;
 
+import helper.JDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +24,7 @@ public class LoginScreenController implements Initializable {
     }
 
     public void onActionCancel(ActionEvent actionEvent) {
+        JDBC.closeConnection();
         System.exit(0);
     }
 

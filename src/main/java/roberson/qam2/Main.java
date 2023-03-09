@@ -1,5 +1,6 @@
 package roberson.qam2;
 
+import helper.JDBC;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +35,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        JDBC.openConnection();
         launch();
     }
 }
