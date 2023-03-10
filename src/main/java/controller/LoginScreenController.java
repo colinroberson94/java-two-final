@@ -1,8 +1,7 @@
 package controller;
 
-import helper.JDBC;
+import DAO.DBConnection;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import roberson.qam2.Main;
@@ -24,7 +23,6 @@ public class LoginScreenController implements Initializable {
     }
 
     public void onActionCancel(ActionEvent actionEvent) {
-        JDBC.closeConnection();
         System.exit(0);
     }
 
