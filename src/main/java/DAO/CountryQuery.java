@@ -14,7 +14,7 @@ public abstract class CountryQuery {
         ObservableList<Countries> clist = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT * FROM countries";
+            String sql = "SELECT * FROM COUNTRIES";
             PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
 
             ResultSet rs = ps.executeQuery();
