@@ -8,8 +8,8 @@ public class Appointments {
     private String appointmentDescription;
     private String appointmentLocation;
     private String appointmentType;
-    public LocalDateTime appointmentStart;
-    public LocalDateTime appointmentEnd;
+    private LocalDateTime appointmentStart;
+    private LocalDateTime appointmentEnd;
     private int userId;
     private int customerId;
     private int contactId;
@@ -29,5 +29,44 @@ public class Appointments {
         this.contactId = contactID;
     }
 
+    public int getAppointmentId() {
+        return appointmentId;
+    }
+
+    public String getAppointmentTitle() {
+        return appointmentTitle;
+    }
+
+    public String getAppointmentDescription() {
+        return appointmentDescription;
+    }
+
+    public String getAppointmentLocation() {
+        return appointmentLocation;
+    }
+
+    public String getAppointmentType() {
+        return appointmentType;
+    }
+
+    public LocalDateTime getAppointmentStart() {
+        return appointmentStart;
+    }
+
+    public LocalDateTime getAppointmentEnd() {
+        return appointmentEnd;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public int getContactId() {
+        return contactId;
+    }
 
 }

@@ -8,4 +8,5 @@ module roberson.qam2 {
     exports roberson.qam2;
     exports controller;
     opens controller to javafx.fxml;
+    opens model to javafx.base;
 }
