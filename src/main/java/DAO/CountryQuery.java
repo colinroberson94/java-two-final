@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public abstract class CountryQuery {
 
     public static ObservableList<Countries> getAllCountries() {
-        ObservableList<Countries> clist = FXCollections.observableArrayList();
+        ObservableList<Countries> countriesObservableList = FXCollections.observableArrayList();
 
         try {
             String sql = "SELECT * FROM COUNTRIES";
@@ -20,17 +20,17 @@ public abstract class CountryQuery {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                int countryID = rs.getInt("Country_ID");
+                int countryId = rs.getInt("Country_ID");
                 String countryName = rs.getString("Country");
 
-                Countries c = new Countries(countryID, countryName);
+                Countries country = new Countries(countryId, countryName);
 
-                clist.add(c);
+                countriesObservableList.add(country);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        return clist;
+        return countriesObservableList;
     }
 }
