@@ -33,4 +33,23 @@ public abstract class UsersQuery {
 
         return usersObservableList;
     }
+
+    public static boolean verifyUser(String username, String password) {
+        try {
+            String sql = "SELECT * FROM USERS WHERE User_Name = " + username + " AND Password = " + password;
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            rs.next();
+            if (rs.getString("User_Name").equals(username)) {
+                if (rs.getString("Password").equals(password)) {
+                    return true;
+                }
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
 }

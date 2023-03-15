@@ -9,6 +9,8 @@ import roberson.qam2.Main;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static DAO.UsersQuery.verifyUser;
+
 public class LoginScreenController implements Initializable {
     public Label userLocation;
     public TextField usernameField;
@@ -29,7 +31,10 @@ public class LoginScreenController implements Initializable {
     public void onActionSubmit(ActionEvent actionEvent) {
         // TODO - just testing
         try {
-            if ((usernameField.getText().contentEquals("username")) && passwordField.getText().contentEquals("password")) {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+
+            if (verifyUser(username, password)) {
                 Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
             }
             else {
