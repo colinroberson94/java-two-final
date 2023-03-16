@@ -1,12 +1,12 @@
 package controller;
 
-import DAO.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import roberson.qam2.Main;
 
 import java.net.URL;
+import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -23,7 +23,9 @@ public class LoginScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // testing resource bundle and changing languages
-        try {
+            ZoneId zone = ZoneId.systemDefault();
+            userLocation.setText(zone.toString());
+
             ResourceBundle rb = ResourceBundle.getBundle("language/Nat", Locale.getDefault());
             if (Locale.getDefault().getLanguage().equals("fr")) {
                 usernameField.setPromptText(rb.getString("Username"));
@@ -31,9 +33,7 @@ public class LoginScreenController implements Initializable {
                 submitLoginButton.setText(rb.getString("Submit"));
                 cancelLoginButton.setText(rb.getString("Cancel"));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         System.out.println("Initialized!");
     }
 
