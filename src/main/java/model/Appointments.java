@@ -69,4 +69,44 @@ public class Appointments {
         return contactId;
     }
 
+    public void setAppointmentId(int appointmentId) {
+        this.appointmentId = appointmentId;
+    }
+
+    public void setAppointmentTitle(String appointmentTitle) {
+        this.appointmentTitle = appointmentTitle;
+    }
+
+    public void setAppointmentDescription(String appointmentDescription) {
+        this.appointmentDescription = appointmentDescription;
+    }
+
+    public void setAppointmentLocation(String appointmentLocation) {
+        this.appointmentLocation = appointmentLocation;
+    }
+
+    public void setAppointmentType(String appointmentType) {
+        this.appointmentType = appointmentType;
+    }
+
+    public void setAppointmentStart(LocalDateTime appointmentStart) {
+        this.appointmentStart = appointmentStart;
+    }
+
+    public void setAppointmentEnd(LocalDateTime appointmentEnd) {
+        this.appointmentEnd = appointmentEnd;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public void setContactId(int contactId) {
+        this.contactId = contactId;
+    }
+
 }
