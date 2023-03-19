@@ -14,22 +14,59 @@ import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import static DAO.AppointmentQuery.getAllAppointments;
+import static roberson.qam2.Main.switchStage;
 
 public class AppointmentScreenController implements Initializable {
 
-    public void onActionExit(ActionEvent actionEvent) {
+    @FXML
+    void onActionExit(ActionEvent actionEvent) {
         System.exit(0);
     }
 
-    public void OnActionAppointments(ActionEvent actionEvent) {
-        Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
+    @FXML
+    void OnActionAppointments(ActionEvent actionEvent) {
+        switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
     }
 
-    public void OnActionReports(ActionEvent actionEvent) {
+    @FXML
+    void OnActionReports(ActionEvent actionEvent) {
     }
 
-    public void OnActionCustomers(ActionEvent actionEvent) {
-        Main.switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
+    @FXML
+    void OnActionCustomers(ActionEvent actionEvent) {
+        switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
+    }
+
+    @FXML
+    void onActionAdd(ActionEvent actionEvent) {
+        switchStage(actionEvent, "/roberson/qam2/add-appointment-screen.fxml");
+    }
+
+    @FXML
+    void onActionUpdate(ActionEvent actionEvent) {
+        /*
+        try {
+            if (AppointmentTable.getSelectionModel().isEmpty()) {
+                throw new RuntimeException();
+            }
+
+            Appointments tempAppt = AppointmentTable.getSelectionModel().getSelectedItem();
+            //int index = Inventory.getAllParts().indexOf(tempAppt);
+
+            ModifyAppointmentController.passAppointment(tempAppt, index);
+
+            switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
+
+        } catch (RuntimeException e) {
+            Alert alert = new Alert(Alert.AlertType.NONE, "No appointment selected. Please select an appointment to modify", ButtonType.OK);
+            alert.showAndWait();
+        }
+        */
+    }
+
+    @FXML
+    void onActionDelete(ActionEvent actionEvent) {
+
     }
 
     @FXML

@@ -26,9 +26,9 @@
         </columns>
       </TableView>
       <Button layoutX="25.0" layoutY="561.0" mnemonicParsing="false" onAction="#onActionExit" text="Exit" />
-      <Button layoutX="1115.0" layoutY="561.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Delete" />
-      <Button layoutX="1045.0" layoutY="561.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Update" />
-      <Button layoutX="975.0" layoutY="561.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Add" />
+      <Button layoutX="1115.0" layoutY="561.0" mnemonicParsing="false" onAction="#onActionDelete" prefHeight="26.0" prefWidth="60.0" text="Delete" />
+      <Button layoutX="1045.0" layoutY="561.0" mnemonicParsing="false" onAction="#onActionUpdate" prefHeight="26.0" prefWidth="60.0" text="Update" />
+      <Button layoutX="975.0" layoutY="561.0" mnemonicParsing="false" onAction="#onActionAdd" prefHeight="26.0" prefWidth="60.0" text="Add" />
       <RadioButton layoutX="975.0" layoutY="21.0" mnemonicParsing="false" text="By week">
          <toggleGroup>
             <ToggleGroup fx:id="AppointmentViewTG" />
