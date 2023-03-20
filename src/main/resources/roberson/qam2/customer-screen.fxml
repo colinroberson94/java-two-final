@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="600.0" maxWidth="1200.0" minHeight="600.0" minWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerScreenController">
     <children>
-        <Button layoutX="25.0" layoutY="561.0" mnemonicParsing="false" onAction="#onActionExit" text="Exit" />
-        <Button layoutX="1115.0" layoutY="561.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Delete" />
-        <Button layoutX="1045.0" layoutY="561.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Update" />
-        <Button layoutX="975.0" layoutY="561.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Add" />
+        <TableView fx:id="CustomerTable" layoutX="25.0" layoutY="50.0" prefHeight="500.0" prefWidth="1150.0">
+            <columns>
+                <TableColumn fx:id="CustomerIdCol" prefWidth="100.0" text="Customer ID" />
+                <TableColumn fx:id="CustomerNameCol" prefWidth="200.0" text="Name" />
+                <TableColumn fx:id="CustomerAddrCol" prefWidth="350.0" text="Address" />
+                <TableColumn fx:id="CustomerFirstLevelDivisionCol" prefWidth="150.0" text="State/Province " />
+                <TableColumn fx:id="CustomerCountryCol" prefWidth="100.0" text="Country" />
+                <TableColumn fx:id="CustomerPostalCodeCol" prefWidth="100.0" text="Postal Code" />
+                <TableColumn fx:id="CustomerPhoneNumberCol" prefWidth="150.0" text="Phone Number" />
+            </columns>
+        </TableView>
+        <Button layoutX="25.0" layoutY="561.0" mnemonicParsing="false" onAction="#OnActionExit" text="Exit" />
+        <Button layoutX="1115.0" layoutY="561.0" mnemonicParsing="false" onAction="#OnActionDelete" prefHeight="26.0" prefWidth="60.0" text="Delete" />
+        <Button layoutX="1045.0" layoutY="561.0" mnemonicParsing="false" onAction="#OnActionUpdate" prefHeight="26.0" prefWidth="60.0" text="Update" />
+        <Button layoutX="975.0" layoutY="561.0" mnemonicParsing="false" onAction="#OnActionAdd" prefHeight="26.0" prefWidth="60.0" text="Add" />
         <Button layoutX="25.0" layoutY="17.0" mnemonicParsing="false" onAction="#OnActionAppointments" prefHeight="26.0" prefWidth="95.0" text="Appointments" />
         <Button layoutX="235.0" layoutY="17.0" mnemonicParsing="false" onAction="#OnActionReports" prefHeight="26.0" prefWidth="95.0" text="Reports" />
         <Button layoutX="130.0" layoutY="17.0" mnemonicParsing="false" onAction="#OnActionCustomers" prefHeight="26.0" prefWidth="95.0" text="Customers" />
