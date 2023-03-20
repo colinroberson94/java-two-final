@@ -1,5 +1,7 @@
 package model;
 
+import DAO.FirstLevelDivisionQuery;
+
 public class Customers {
     private String customerName;
     private String customerAddress;
@@ -7,6 +9,8 @@ public class Customers {
     private String customerPhoneNumber;
     private Integer customerId;
     private Integer divisionId;
+    private String customerCountry;
+    private String customerFirstLevelDivision;
 
     public Customers(String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber,
                      Integer customerId, Integer divisionId) {
@@ -16,6 +20,8 @@ public class Customers {
         this.customerPhoneNumber = customerPhoneNumber;
         this.customerId = customerId;
         this.divisionId = divisionId;
+        customerCountry = FirstLevelDivisionQuery.getCountryFromDivisionId(divisionId);
+        customerFirstLevelDivision = FirstLevelDivisionQuery.getFirstLevelDivisionFromDivisionId(divisionId);
     }
 
     public void setCustomerName(String customerName) {
@@ -38,6 +44,10 @@ public class Customers {
         this.customerId = customerId;
     }
 
+    public void setDivisionId(Integer divisionId) {
+        this.divisionId = divisionId;
+    }
+
     public String getCustomerName() {
         return customerName;
     }
@@ -56,5 +66,25 @@ public class Customers {
 
     public Integer getCustomerId() {
         return customerId;
+    }
+
+    public Integer getDivisionId() {
+        return divisionId;
+    }
+
+    public String getCustomerCountry() {
+        return customerCountry;
+    }
+
+    public void setCustomerCountry(String customerCountry) {
+        this.customerCountry = customerCountry;
+    }
+
+    public String getCustomerFirstLevelDivision() {
+        return customerFirstLevelDivision;
+    }
+
+    public void setCustomerFirstLevelDivision(String customerFirstLevelDivision) {
+        this.customerFirstLevelDivision = customerFirstLevelDivision;
     }
 }

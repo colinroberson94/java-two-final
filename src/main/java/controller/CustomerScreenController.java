@@ -72,8 +72,8 @@ public class CustomerScreenController implements Initializable {
         CustomerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         CustomerNameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         CustomerAddrCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
-        CustomerFirstLevelDivisionCol.setCellValueFactory(new PropertyValueFactory<>("division"));
-        //CustomerCountryCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
+        CustomerFirstLevelDivisionCol.setCellValueFactory(new PropertyValueFactory<>("customerFirstLevelDivision"));
+        CustomerCountryCol.setCellValueFactory(new PropertyValueFactory<>("customerCountry"));
         CustomerPostalCodeCol.setCellValueFactory(new PropertyValueFactory<>("customerPostalCode"));
         CustomerPhoneNumberCol.setCellValueFactory(new PropertyValueFactory<>("customerPhoneNumber"));
 

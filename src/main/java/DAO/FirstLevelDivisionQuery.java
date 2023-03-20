@@ -33,4 +33,31 @@ public abstract class FirstLevelDivisionQuery {
 
         return firstLevelDivisionObservableList;
     }
+
+    public static String getFirstLevelDivisionFromDivisionId(Integer divisionId) {
+        try {
+            String sql = "SELECT Division FROM FIRST_LEVEL_DIVISIONS WHERE Division_ID = " + divisionId + ";";
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getString("Division");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
+
+    public static String getCountryFromDivisionId(Integer divisionId) {
+        try {
+            String sql = "SELECT Country FROM COUNTRIES WHERE Country_ID = " +
+                    "(SELECT Country_ID FROM first_level_divisions WHERE Division_ID = " + divisionId + ");";
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getString("Country");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
 }
