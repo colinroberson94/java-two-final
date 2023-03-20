@@ -6,13 +6,16 @@ public class Customers {
     private String customerPostalCode;
     private String customerPhoneNumber;
     private Integer customerId;
+    private Integer divisionId;
 
-    public Customers(String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber, Integer customerId) {
+    public Customers(String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber,
+                     Integer customerId, Integer divisionId) {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerPostalCode = customerPostalCode;
         this.customerPhoneNumber = customerPhoneNumber;
         this.customerId = customerId;
+        this.divisionId = divisionId;
     }
 
     public void setCustomerName(String customerName) {

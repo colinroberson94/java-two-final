@@ -7,12 +7,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Customers;
+import model.FirstLevelDivision;
 import roberson.qam2.Main;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import static DAO.CustomerQuery.getAllCustomers;
+import static DAO.FirstLevelDivisionQuery.getAllFirstLevelDivisions;
 
 public class CustomerScreenController implements Initializable {
 
@@ -63,13 +65,14 @@ public class CustomerScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<Customers> allCustomers = getAllCustomers();
+        ObservableList<FirstLevelDivision> allFirstLevelDivision = getAllFirstLevelDivisions();
 
         CustomerTable.setItems(allCustomers);
 
         CustomerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         CustomerNameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         CustomerAddrCol.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
-        //CustomerFirstLevelDivisionCol.setCellValueFactory(new PropertyValueFactory<>("appointmentLocation"));
+        CustomerFirstLevelDivisionCol.setCellValueFactory(new PropertyValueFactory<>("division"));
         //CustomerCountryCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
         CustomerPostalCodeCol.setCellValueFactory(new PropertyValueFactory<>("customerPostalCode"));
         CustomerPhoneNumberCol.setCellValueFactory(new PropertyValueFactory<>("customerPhoneNumber"));

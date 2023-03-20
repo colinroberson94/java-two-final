@@ -23,8 +23,9 @@ public abstract class CustomerQuery {
                 String customerPostalCode = rs.getString("Postal_Code");
                 String customerPhoneNumber = rs.getString("Phone");
                 int customerId = rs.getInt("Customer_ID");
+                int divisionId = rs.getInt("Division_ID");
 
-                Customers customer = new Customers(customerName, customerAddress, customerPostalCode, customerPhoneNumber, customerId);
+                Customers customer = new Customers(customerName, customerAddress, customerPostalCode, customerPhoneNumber, customerId, divisionId);
 
                 customersObservableList.add(customer);
             }
