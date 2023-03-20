@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 
 import static DAO.CustomerQuery.getAllCustomers;
 import static DAO.FirstLevelDivisionQuery.getAllFirstLevelDivisions;
+import static roberson.qam2.Main.switchStage;
 
 public class CustomerScreenController implements Initializable {
 
@@ -35,30 +36,38 @@ public class CustomerScreenController implements Initializable {
     @FXML
     private  TableView<Customers> CustomerTable;
 
-    public void OnActionExit(ActionEvent actionEvent) {
+    @FXML
+    void OnActionExit(ActionEvent actionEvent) {
         System.exit(0);
     }
 
-    public void OnActionAppointments(ActionEvent actionEvent) {
+    @FXML
+    void OnActionAppointments(ActionEvent actionEvent) {
         Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
     }
 
-    public void OnActionReports(ActionEvent actionEvent) {
+    @FXML
+    void OnActionReports(ActionEvent actionEvent) {
     }
 
-    public void OnActionCustomers(ActionEvent actionEvent) {
+    @FXML
+    void OnActionCustomers(ActionEvent actionEvent) {
         Main.switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
     }
 
-    public void OnActionAdd(ActionEvent actionEvent) {
+    @FXML
+    void OnActionAdd(ActionEvent actionEvent) {
+        switchStage(actionEvent, "/roberson/qam2/add-customer-screen.fxml");
+    }
+
+    @FXML
+    void OnActionUpdate(ActionEvent actionEvent) {
 
     }
 
-    public void OnActionUpdate(ActionEvent actionEvent) {
 
-    }
-
-    public void OnActionDelete(ActionEvent actionEvent) {
+    @FXML
+    void OnActionDelete(ActionEvent actionEvent) {
 
     }
 
