@@ -46,9 +46,8 @@ public abstract class UsersQuery {
                     return true;
                 }
             }
-
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            return false;
         }
         return false;
     }

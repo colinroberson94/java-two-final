@@ -54,14 +54,14 @@ public class LoginScreenController implements Initializable {
 
             if (verifyUser(username, password)) {
                 outputLog.println(Timestamp.valueOf(LocalDateTime.now()) + ": " + username + " SUCCESSFULLY logged in.");
+                outputLog.close();
                 Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
             }
             else {
                 outputLog.println(Timestamp.valueOf(LocalDateTime.now()) + ": " + username + " FAILED to log in.");
+                outputLog.close();
                 throw new Exception();
             }
-
-            outputLog.close();
         }
         catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.NONE, "Incorrect username or password", ButtonType.OK);
