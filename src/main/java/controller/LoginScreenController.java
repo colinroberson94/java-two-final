@@ -5,10 +5,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import roberson.qam2.Main;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import static DAO.UsersQuery.verifyUser;
 
@@ -33,8 +38,6 @@ public class LoginScreenController implements Initializable {
                 submitLoginButton.setText(rb.getString("Submit"));
                 cancelLoginButton.setText(rb.getString("Cancel"));
             }
-
-        System.out.println("Initialized!");
     }
 
     public void onActionCancel(ActionEvent actionEvent) {
@@ -42,17 +45,23 @@ public class LoginScreenController implements Initializable {
     }
 
     public void onActionSubmit(ActionEvent actionEvent) {
-        // TODO - just testing
         try {
             String username = usernameField.getText();
             String password = passwordField.getText();
 
+            FileWriter logFile = new FileWriter("login_activity.txt", true);
+            PrintWriter outputLog = new PrintWriter(logFile);
+
             if (verifyUser(username, password)) {
+                outputLog.println(Timestamp.valueOf(LocalDateTime.now()) + ": " + username + " SUCCESSFULLY logged in.");
                 Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
             }
             else {
+                outputLog.println(Timestamp.valueOf(LocalDateTime.now()) + ": " + username + " FAILED to log in.");
                 throw new Exception();
             }
+
+            outputLog.close();
         }
         catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.NONE, "Incorrect username or password", ButtonType.OK);
