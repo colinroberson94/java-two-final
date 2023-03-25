@@ -36,8 +36,10 @@ public abstract class UsersQuery {
 
     public static boolean verifyUser(String username, String password) {
         try {
-            String sql = "SELECT * FROM USERS WHERE User_Name = '" + username + "' AND Password = '" + password + "'";
+            String sql = "SELECT * FROM USERS WHERE User_Name = '?' AND Password = '?'";
             PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
 
             rs.next();

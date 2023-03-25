@@ -36,8 +36,10 @@ public abstract class FirstLevelDivisionQuery {
 
     public static String getFirstLevelDivisionFromDivisionId(Integer divisionId) {
         try {
-            String sql = "SELECT Division FROM FIRST_LEVEL_DIVISIONS WHERE Division_ID = " + divisionId + ";";
+            //String sql = "SELECT Division FROM FIRST_LEVEL_DIVISIONS WHERE Division_ID = " + divisionId + ";";
+            String sql = "SELECT Division FROM FIRST_LEVEL_DIVISIONS WHERE Division_ID = ?";
             PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            ps.setInt(1, divisionId.intValue());
             ResultSet rs = ps.executeQuery();
             rs.next();
             return rs.getString("Division");
@@ -57,7 +59,7 @@ public abstract class FirstLevelDivisionQuery {
             return rs.getString("Country");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            return null;
         }
-        return null;
     }
 }
