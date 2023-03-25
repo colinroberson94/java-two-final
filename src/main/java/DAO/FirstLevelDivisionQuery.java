@@ -33,7 +33,7 @@ public abstract class FirstLevelDivisionQuery {
 
         return firstLevelDivisionObservableList;
     }
-
+/*
     public static String getFirstLevelDivisionFromDivisionId(Integer divisionId) {
         try {
             //String sql = "SELECT Division FROM FIRST_LEVEL_DIVISIONS WHERE Division_ID = " + divisionId + ";";
@@ -62,4 +62,5 @@ public abstract class FirstLevelDivisionQuery {
             return null;
         }
     }
+    */
 }

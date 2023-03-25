@@ -20,8 +20,9 @@ public class Customers {
         this.customerPhoneNumber = customerPhoneNumber;
         this.customerId = customerId;
         this.divisionId = divisionId;
-        customerCountry = FirstLevelDivisionQuery.getCountryFromDivisionId(divisionId);
-        customerFirstLevelDivision = FirstLevelDivisionQuery.getFirstLevelDivisionFromDivisionId(divisionId);
+        customerCountry = Countries.getCountryNameFromCountryId(
+                                    FirstLevelDivision.getCountryIdFromDivisionId(divisionId));
+        customerFirstLevelDivision = FirstLevelDivision.getFirstLevelDivisionFromDivisionId(divisionId);
     }
 
     public void setCustomerName(String customerName) {
