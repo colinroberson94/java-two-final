@@ -10,6 +10,11 @@ public class Countries {
     private String countryName;
     private static ObservableList<Countries> allCountries = FXCollections.observableArrayList();
 
+    @Override
+    public String toString() {
+        return countryName;
+    }
+
     public Countries(Integer countryId, String countryName) {
         this.countryId = countryId;
         this.countryName = countryName;
@@ -31,6 +36,13 @@ public class Countries {
         this.countryName = countryName;
     }
 
+    /**
+     * Get Country Name from Country ID
+     *
+     * Takes in a country ID, filters out the first country that matches this ID and returns it.
+     * @param id
+     * @return
+     */
     public static String getCountryNameFromCountryId(Integer id) {
         allCountries = getAllCountries();
 

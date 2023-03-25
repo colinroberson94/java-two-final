@@ -13,16 +13,18 @@ public class Customers {
     private String customerFirstLevelDivision;
 
     public Customers(String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber,
-                     Integer customerId, Integer divisionId) {
+                     Integer customerId, Integer divisionId, String customerCountry, String customerFirstLevelDivision) {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerPostalCode = customerPostalCode;
         this.customerPhoneNumber = customerPhoneNumber;
         this.customerId = customerId;
         this.divisionId = divisionId;
-        customerCountry = Countries.getCountryNameFromCountryId(
-                                    FirstLevelDivision.getCountryIdFromDivisionId(divisionId));
-        customerFirstLevelDivision = FirstLevelDivision.getFirstLevelDivisionFromDivisionId(divisionId);
+        this.customerCountry = customerCountry;
+        this.customerFirstLevelDivision = customerFirstLevelDivision;
+        //customerCountry = Countries.getCountryNameFromCountryId(
+        //                            FirstLevelDivision.getCountryIdFromDivisionId(divisionId));
+        //customerFirstLevelDivision = FirstLevelDivision.getFirstLevelDivisionFromDivisionId(divisionId);
     }
 
     public void setCustomerName(String customerName) {

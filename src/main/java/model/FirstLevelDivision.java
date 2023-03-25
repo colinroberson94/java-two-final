@@ -3,8 +3,6 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
-import static DAO.CountryQuery.getAllCountries;
 import static DAO.FirstLevelDivisionQuery.getAllFirstLevelDivisions;
 
 public class FirstLevelDivision {
@@ -12,6 +10,11 @@ public class FirstLevelDivision {
     private String division;
     private Integer countryId;
     private static ObservableList<FirstLevelDivision> allFirstLevelDivision = FXCollections.observableArrayList();
+
+    @Override
+    public String toString() {
+        return division;
+    }
 
     public FirstLevelDivision (Integer divisionId, String division, Integer countryId) {
         this.divisionId = divisionId;
@@ -31,6 +34,13 @@ public class FirstLevelDivision {
         return division;
     }
 
+    /**
+     * Get First Level Division name from First Level Division ID
+     *
+     * Takes in a first level division ID, filters out the first ID that matches the provided ID and returns the corresponding name.
+     * @param id
+     * @return
+     */
     public static String getFirstLevelDivisionFromDivisionId(Integer id) {
         allFirstLevelDivision = getAllFirstLevelDivisions();
 
@@ -43,6 +53,13 @@ public class FirstLevelDivision {
         return divisionName;
     }
 
+    /**
+     * Get Country ID from First Level Division ID
+     *
+     * Takes in a first level division ID, filters out the first ID that matches the provided ID and returns the country ID.
+     * @param id
+     * @return
+     */
     public static Integer getCountryIdFromDivisionId(Integer id) {
         allFirstLevelDivision = getAllFirstLevelDivisions();
 

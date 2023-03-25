@@ -58,12 +58,12 @@ public class LoginScreenController implements Initializable {
                 Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
             }
             else if (username.isEmpty() || password.isEmpty()) {
-                throw new Exception();
+                throw new IllegalArgumentException();
             }
             else {
                 outputLog.println(Timestamp.valueOf(LocalDateTime.now()) + ": " + username + " FAILED to log in.");
                 outputLog.close();
-                throw new IllegalArgumentException();
+                throw new Exception();
             }
         } catch (IllegalArgumentException e) {
             Alert alert = new Alert(Alert.AlertType.NONE, "Username or Password cannot be blank", ButtonType.OK);
