@@ -3,6 +3,8 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.stream.Collectors;
+
 import static DAO.CountryQuery.getAllCountries;
 import static DAO.FirstLevelDivisionQuery.getAllFirstLevelDivisions;
 
@@ -71,6 +73,17 @@ public class FirstLevelDivision {
                 .getCountryId();
 
         return countryId;
+    }
+    public static ObservableList<FirstLevelDivision> getFirstLevelDivisionOfCountry(Integer countryId) {
+        ObservableList<FirstLevelDivision> firstLevelDivisionObservableList = FXCollections.observableArrayList();
+
+        getAllFirstLevelDivisions().forEach(fld -> {
+            if (fld.getCountryId().equals(countryId)) {
+                firstLevelDivisionObservableList.add(fld);
+            }
+        });
+
+        return firstLevelDivisionObservableList;
     }
 
     public static FirstLevelDivision getFirstLevelDivisionFromName(String name) {

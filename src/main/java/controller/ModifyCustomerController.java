@@ -62,14 +62,12 @@ public class ModifyCustomerController implements Initializable {
         addressTextField.setText(customer.getCustomerAddress());
         postalCodeTextField.setText(customer.getCustomerPostalCode());
         phoneNumberTextField.setText(customer.getCustomerPhoneNumber());
-        firstLevelDivisionComboBox.setItems(getAllFirstLevelDivisions());
-        firstLevelDivisionComboBox.setVisibleRowCount(5);
-        firstLevelDivisionComboBox.setValue(fld);
-
 
         countryComboBox.setItems(getAllCountries());
-        countryComboBox.setVisibleRowCount(5);
         countryComboBox.setValue(country);
+
+        firstLevelDivisionComboBox.setItems(getAllFirstLevelDivisions());
+        firstLevelDivisionComboBox.setValue(fld);
     }
 
     @FXML

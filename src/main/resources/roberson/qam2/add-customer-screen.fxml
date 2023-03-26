@@ -56,8 +56,8 @@
                         <Label fx:id="customertIdLabel" text="ID" />
                         <Label fx:id="customerNameLabel" text="Name" GridPane.rowIndex="1" />
                         <Label fx:id="customerAddrLabel" text="Address" GridPane.rowIndex="2" />
-                        <Label fx:id="customerFirstLevelDivisionLabel" text="State/Province" GridPane.rowIndex="3" />
-                        <Label fx:id="customerCountryLabel" text="Country" GridPane.rowIndex="4" />
+                        <Label fx:id="customerFirstLevelDivisionLabel" text="State/Province" GridPane.rowIndex="4" />
+                        <Label fx:id="customerCountryLabel" text="Country" GridPane.rowIndex="3" />
                         <Label fx:id="customerPostalCodeLabel" text="Postal Code" GridPane.rowIndex="5" />
                         <TextField disable="true" editable="false" promptText="Auto Gen - Disabled" GridPane.columnIndex="1">
                             <font>
@@ -77,8 +77,8 @@
                         <Insets left="225.0" />
                      </GridPane.margin></Button>
                         <TextField fx:id="phoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <ComboBox fx:id="firstLevelDivisionComboBox" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Please select a state/province" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <ComboBox fx:id="countryComboBox" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Please select a country" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="firstLevelDivisionComboBox" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Please select a state/province" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="countryComboBox" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Please select a country" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                     </children>
                     <padding>
                         <Insets left="60.0" top="20.0" />

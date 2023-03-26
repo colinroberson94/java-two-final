@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import static DAO.CountryQuery.getAllCountries;
 import static DAO.CustomerQuery.addCustomer;
 import static DAO.FirstLevelDivisionQuery.getAllFirstLevelDivisions;
+import static model.FirstLevelDivision.getFirstLevelDivisionOfCountry;
 
 public class AddCustomerController implements Initializable {
     @FXML
@@ -46,11 +47,11 @@ public class AddCustomerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        firstLevelDivisionComboBox.setItems(getAllFirstLevelDivisions());
-        firstLevelDivisionComboBox.setVisibleRowCount(5);
-
         countryComboBox.setItems(getAllCountries());
-        countryComboBox.setVisibleRowCount(5);
+        if (!countryComboBox.getSelectionModel().isEmpty()) {
+            Countries country = countryComboBox.getSelectionModel().getSelectedItem();
+            firstLevelDivisionComboBox.setItems(getFirstLevelDivisionOfCountry(country.getCountryId()));
+        }
     }
 
     @FXML
