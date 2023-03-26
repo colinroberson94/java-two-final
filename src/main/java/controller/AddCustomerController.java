@@ -48,10 +48,6 @@ public class AddCustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         countryComboBox.setItems(getAllCountries());
-        if (!countryComboBox.getSelectionModel().isEmpty()) {
-            Countries country = countryComboBox.getSelectionModel().getSelectedItem();
-            firstLevelDivisionComboBox.setItems(getFirstLevelDivisionOfCountry(country.getCountryId()));
-        }
     }
 
     @FXML
@@ -76,5 +72,13 @@ public class AddCustomerController implements Initializable {
     @FXML
     void onActionCancel(ActionEvent actionEvent) {
         Main.switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
+    }
+
+    @FXML
+    void onActionCountrySelected(ActionEvent actionEvent) {
+        Countries country = countryComboBox.getSelectionModel().getSelectedItem();
+        firstLevelDivisionComboBox.setSelectionModel(null);
+        firstLevelDivisionComboBox.isEditable();
+        firstLevelDivisionComboBox.setItems(getFirstLevelDivisionOfCountry(country.getCountryId()));
     }
 }
