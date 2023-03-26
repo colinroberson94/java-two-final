@@ -14,6 +14,8 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
+import static DAO.AppointmentQuery.addAppointment;
+
 public class AddAppointmentController implements Initializable {
 
     @FXML
@@ -62,19 +64,19 @@ public class AddAppointmentController implements Initializable {
     @FXML
     void onActionSave(ActionEvent actionEvent) {
         try {
-            /*int appointmentId = rs.getInt("Appointment_ID");
-            //String appointmentTitle = titleTextField.getText();
-            String appointmentDescription = descrTextField.getText();
-            String appointmentLocation = locationTextField.getText();
-            String appointmentType = typeTextField.getText();
-            LocalDateTime appointmentStart = startTimeTextField.getText().toLocalDateTime();
-            LocalDateTime appointmentEnd = endTimeTextField.getText().toLocalDateTime();
+            String title = titleTextField.getText();
+            String description = descrTextField.getText();
+            String location = locationTextField.getText();
+            String type = typeTextField.getText();
+            LocalDateTime start = startTimeTextField.getText().toLocalDateTime();
+            LocalDateTime end = endTimeTextField.getText().toLocalDateTime();
             int userId = Integer.parseInt(userIdTextField.getText());
             int customerId = Integer.parseInt(customerIdTextField.getText());
             int contactId = Integer.parseInt(contactTextField.getText());
+            addAppointment(title, description, location, type, start, end, userId, customerId, contactId);
 
-            Appointments appt = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation,
-                    appointmentType, appointmentStart, appointmentEnd, userId, customerId, contactId);*/
+           Main.switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
+
         } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please input a valid number", ButtonType.OK);
             alert.showAndWait();
