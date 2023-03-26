@@ -75,7 +75,7 @@ public class CustomerScreenController implements Initializable {
 
             switchStage(actionEvent, "/roberson/qam2/modify-customer-screen.fxml");
         } catch (RuntimeException e) {
-            Alert alert = new Alert(Alert.AlertType.NONE, "No customer selected. Please select a customer to modify.");
+            Alert alert = new Alert(Alert.AlertType.NONE, "No customer selected. Please select a customer to modify.", ButtonType.OK);
             alert.showAndWait();
         }
     }
@@ -94,9 +94,10 @@ public class CustomerScreenController implements Initializable {
 
             if (alert.getResult() == ButtonType.YES) {
                 deleteCustomer(customer.getCustomerId());
+                CustomerTable.setItems(getAllCustomers());
             }
         } catch (RuntimeException e) {
-            Alert alert = new Alert(Alert.AlertType.NONE, "No customer selected. Please select a customer and then delete.");
+            Alert alert = new Alert(Alert.AlertType.NONE, "No customer selected. Please select a customer and then delete.", ButtonType.OK);
             alert.showAndWait();
         }
 

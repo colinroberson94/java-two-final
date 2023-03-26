@@ -27,7 +27,7 @@
             <children>
                 <HBox layoutX="14.0" layoutY="14.0" prefHeight="60.0" prefWidth="560.0" spacing="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <Label text="Add Customer">
+                        <Label text="Modify Customer">
                             <font>
                                 <Font name="System Bold" size="24.0" />
                             </font>
@@ -59,9 +59,9 @@
                         <Label fx:id="customerFirstLevelDivisionLabel" text="State/Province" GridPane.rowIndex="3" />
                         <Label fx:id="apptContactLabel" text="Country" GridPane.rowIndex="4" />
                         <Label fx:id="customerPostalCodeLabel" text="Postal Code" GridPane.rowIndex="5" />
-                        <TextField disable="true" editable="false" promptText="Auto Gen - Disabled" GridPane.columnIndex="1">
+                        <TextField fx:id="customerIdTextField" disable="true" editable="false" GridPane.columnIndex="1">
                             <font>
-                                <Font name="System Italic" size="13.0" />
+                                <Font size="13.0" />
                             </font>
                         </TextField>
                         <TextField fx:id="nameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -77,8 +77,8 @@
                                 <Insets left="225.0" />
                             </GridPane.margin></Button>
                         <TextField fx:id="phoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <ComboBox fx:id="firstLevelDivisionComboBox" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <ComboBox fx:id="countryComboBox" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <ComboBox fx:id="firstLevelDivisionComboBox" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Please select a state/province" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="countryComboBox" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Please select a country" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                     </children>
                     <padding>
                         <Insets left="60.0" top="20.0" />

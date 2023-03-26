@@ -12,12 +12,16 @@ import roberson.qam2.Main;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static DAO.CountryQuery.getAllCountries;
 import static DAO.CustomerQuery.addCustomer;
 import static DAO.CustomerQuery.updateCustomer;
+import static DAO.FirstLevelDivisionQuery.getAllFirstLevelDivisions;
 import static model.Countries.getCountryFromName;
 import static model.FirstLevelDivision.getFirstLevelDivisionFromName;
 
 public class ModifyCustomerController implements Initializable {
+    @FXML
+    private TextField customerIdTextField;
     @FXML
     private TextField nameTextField;
     @FXML
@@ -53,11 +57,18 @@ public class ModifyCustomerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        customerIdTextField.setText(String.valueOf(customer.getCustomerId()));
         nameTextField.setText(customer.getCustomerName());
         addressTextField.setText(customer.getCustomerAddress());
         postalCodeTextField.setText(customer.getCustomerPostalCode());
         phoneNumberTextField.setText(customer.getCustomerPhoneNumber());
+        firstLevelDivisionComboBox.setItems(getAllFirstLevelDivisions());
+        firstLevelDivisionComboBox.setVisibleRowCount(5);
         firstLevelDivisionComboBox.setValue(fld);
+
+
+        countryComboBox.setItems(getAllCountries());
+        countryComboBox.setVisibleRowCount(5);
         countryComboBox.setValue(country);
     }
 
@@ -71,7 +82,7 @@ public class ModifyCustomerController implements Initializable {
             Countries country = countryComboBox.getSelectionModel().getSelectedItem();
             FirstLevelDivision firstLevelDivsion = firstLevelDivisionComboBox.getSelectionModel().getSelectedItem();
             Integer fldID = firstLevelDivsion.getDivisionId();
-            Integer customerId = customer.getCustomerId();
+            Integer customerId = Integer.parseInt(customerIdTextField.getText());
             updateCustomer(name, address, postalCode, phone, fldID, customerId);
 
             Main.switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
