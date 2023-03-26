@@ -13,8 +13,10 @@ import roberson.qam2.Main;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static DAO.CustomerQuery.deleteCustomer;
 import static DAO.CustomerQuery.getAllCustomers;
 import static DAO.FirstLevelDivisionQuery.getAllFirstLevelDivisions;
+import static controller.ModifyCustomerController.passPart;
 import static roberson.qam2.Main.switchStage;
 
 public class CustomerScreenController implements Initializable {
@@ -43,7 +45,7 @@ public class CustomerScreenController implements Initializable {
 
     @FXML
     void OnActionAppointments(ActionEvent actionEvent) {
-        Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
+        switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
     }
 
     @FXML
@@ -52,7 +54,7 @@ public class CustomerScreenController implements Initializable {
 
     @FXML
     void OnActionCustomers(ActionEvent actionEvent) {
-        Main.switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
+        switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
     }
 
     @FXML
@@ -62,12 +64,41 @@ public class CustomerScreenController implements Initializable {
 
     @FXML
     void OnActionUpdate(ActionEvent actionEvent) {
+        try {
+            if (CustomerTable.getSelectionModel().isEmpty()) {
+                throw new RuntimeException();
+            }
 
+            Customers tempCustomer = CustomerTable.getSelectionModel().getSelectedItem();
+
+            passPart(tempCustomer);
+
+            switchStage(actionEvent, "/roberson/qam2/modify-customer-screen.fxml");
+        } catch (RuntimeException e) {
+            Alert alert = new Alert(Alert.AlertType.NONE, "No customer selected. Please select a customer to modify.");
+            alert.showAndWait();
+        }
     }
 
-
+// TODO - need to ensure that all appointments are deleted in the table PRIOR to the customer being deleted.
     @FXML
     void OnActionDelete(ActionEvent actionEvent) {
+        try {
+            if (CustomerTable.getSelectionModel().isEmpty()) {
+                throw new RuntimeException();
+            }
+            Customers customer = CustomerTable.getSelectionModel().getSelectedItem();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete " + customer.getCustomerName() + " ?", ButtonType.YES, ButtonType.NO);
+            alert.showAndWait();
+
+            if (alert.getResult() == ButtonType.YES) {
+                deleteCustomer(customer.getCustomerId());
+            }
+        } catch (RuntimeException e) {
+            Alert alert = new Alert(Alert.AlertType.NONE, "No customer selected. Please select a customer and then delete.");
+            alert.showAndWait();
+        }
 
     }
 

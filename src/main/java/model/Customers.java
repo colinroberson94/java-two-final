@@ -1,7 +1,5 @@
 package model;
 
-import DAO.FirstLevelDivisionQuery;
-
 public class Customers {
     private String customerName;
     private String customerAddress;

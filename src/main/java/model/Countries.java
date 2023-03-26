@@ -43,15 +43,26 @@ public class Countries {
      * @param id
      * @return
      */
-    public static String getCountryNameFromCountryId(Integer id) {
+//    public static String getCountryNameFromCountryId(Integer id) {
+//        allCountries = getAllCountries();
+//
+//        String countryName = allCountries.stream()
+//                .filter(country -> country.getCountryId().equals(id))
+//                .findFirst()
+//                .orElse(null)
+//                .getCountryName();
+//
+//        return countryName;
+//    }
+
+    public static Countries getCountryFromName(String name) {
         allCountries = getAllCountries();
 
-        String countryName = allCountries.stream()
-                .filter(country -> country.getCountryId().equals(id))
+        Countries countries = allCountries.stream()
+                .filter(country -> country.getCountryName().equals(name))
                 .findFirst()
-                .orElse(null)
-                .getCountryName();
+                .orElse(null);
 
-        return countryName;
+        return countries;
     }
 }

@@ -3,9 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import model.Countries;
 import model.FirstLevelDivision;
 import roberson.qam2.Main;
@@ -49,17 +47,15 @@ public class AddCustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         firstLevelDivisionComboBox.setItems(getAllFirstLevelDivisions());
-        firstLevelDivisionComboBox.setPromptText("Please select a First Level Division");
         firstLevelDivisionComboBox.setVisibleRowCount(5);
 
         countryComboBox.setItems(getAllCountries());
-        countryComboBox.setPromptText("Please select a Country");
         countryComboBox.setVisibleRowCount(5);
     }
 
     @FXML
     void onActionSave(ActionEvent actionEvent) {
-        //try {
+        try {
             String name = nameTextField.getText();
             String address = addressTextField.getText();
             String postalCode = postalCodeTextField.getText();
@@ -69,17 +65,11 @@ public class AddCustomerController implements Initializable {
             Integer fldID = firstLevelDivsion.getDivisionId();
             addCustomer(name, address, postalCode, phone, fldID);
 
-
-
-                Main.switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
-//            }
-//        } catch (NumberFormatException e) {
-//            Alert alert = new Alert(Alert.AlertType.ERROR, "Please input a valid number", ButtonType.OK);
-//            alert.showAndWait();
-//        } catch (RuntimeException e) {
-//            Alert alert = new Alert(Alert.AlertType.ERROR, e.getLocalizedMessage(), ButtonType.OK);
-//            alert.showAndWait();
-//        }
+            Main.switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
+            }  catch (RuntimeException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getLocalizedMessage(), ButtonType.OK);
+            alert.showAndWait();
+        }
     }
 
     @FXML

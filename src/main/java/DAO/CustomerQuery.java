@@ -42,6 +42,7 @@ public abstract class CustomerQuery {
         return customersObservableList;
     }
 
+    // TODO add ability to pull in current users name
     public static void addCustomer(String name, String address, String postalCode, String phone, Integer divisionId) {
         try {
             String sql = "INSERT INTO customers VALUES (NULL,?,?,?,?,?,?,?,?,?)";
@@ -56,6 +57,38 @@ public abstract class CustomerQuery {
             ps.setTimestamp(7, timestamp);
             ps.setString(8, "QAM2");
             ps.setInt(9, divisionId);
+
+            ps.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static void deleteCustomer(Integer customerId) {
+        try {
+            String sql = "DELETE FROM customers WHERE Customer_ID = ?";
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            ps.setInt(1, customerId.intValue());
+
+            ps.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static void updateCustomer(String name, String address, String postalCode, String phone, Integer divisionId, Integer customerId) {
+        try {
+            String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Last_Update = ?, Last_Updated_By = ?, Division_ID = ? WHERE Customer_ID = ?";
+            Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, address);
+            ps.setString(3, postalCode);
+            ps.setString(4, phone);
+            ps.setTimestamp(5, timestamp);
+            ps.setString(6, "QAM2");
+            ps.setInt(7, divisionId);
+            ps.setInt(8, customerId);
 
             ps.execute();
         } catch (SQLException throwables) {
