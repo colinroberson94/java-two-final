@@ -78,7 +78,7 @@
                             </GridPane.margin></Button>
                         <TextField fx:id="phoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <ComboBox fx:id="firstLevelDivisionComboBox" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Please select a state/province" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <ComboBox fx:id="countryComboBox" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" promptText="Please select a country" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="countryComboBox" maxWidth="300.0" minWidth="300.0" onAction="#onActionCountrySelected" prefWidth="300.0" promptText="Please select a country" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                     </children>
                     <padding>
                         <Insets left="60.0" top="20.0" />

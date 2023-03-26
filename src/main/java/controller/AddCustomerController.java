@@ -57,7 +57,6 @@ public class AddCustomerController implements Initializable {
             String address = addressTextField.getText();
             String postalCode = postalCodeTextField.getText();
             String phone = phoneNumberTextField.getText();
-            Countries country = countryComboBox.getSelectionModel().getSelectedItem();
             FirstLevelDivision firstLevelDivsion = firstLevelDivisionComboBox.getSelectionModel().getSelectedItem();
             Integer fldID = firstLevelDivsion.getDivisionId();
             addCustomer(name, address, postalCode, phone, fldID);
@@ -77,8 +76,6 @@ public class AddCustomerController implements Initializable {
     @FXML
     void onActionCountrySelected(ActionEvent actionEvent) {
         Countries country = countryComboBox.getSelectionModel().getSelectedItem();
-        firstLevelDivisionComboBox.setSelectionModel(null);
-        firstLevelDivisionComboBox.isEditable();
         firstLevelDivisionComboBox.setItems(getFirstLevelDivisionOfCountry(country.getCountryId()));
     }
 }

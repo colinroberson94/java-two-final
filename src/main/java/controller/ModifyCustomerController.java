@@ -18,6 +18,7 @@ import static DAO.CustomerQuery.updateCustomer;
 import static DAO.FirstLevelDivisionQuery.getAllFirstLevelDivisions;
 import static model.Countries.getCountryFromName;
 import static model.FirstLevelDivision.getFirstLevelDivisionFromName;
+import static model.FirstLevelDivision.getFirstLevelDivisionOfCountry;
 
 public class ModifyCustomerController implements Initializable {
     @FXML
@@ -66,7 +67,7 @@ public class ModifyCustomerController implements Initializable {
         countryComboBox.setItems(getAllCountries());
         countryComboBox.setValue(country);
 
-        firstLevelDivisionComboBox.setItems(getAllFirstLevelDivisions());
+        firstLevelDivisionComboBox.setItems(getFirstLevelDivisionOfCountry(country.getCountryId()));
         firstLevelDivisionComboBox.setValue(fld);
     }
 
@@ -77,7 +78,6 @@ public class ModifyCustomerController implements Initializable {
             String address = addressTextField.getText();
             String postalCode = postalCodeTextField.getText();
             String phone = phoneNumberTextField.getText();
-            Countries country = countryComboBox.getSelectionModel().getSelectedItem();
             FirstLevelDivision firstLevelDivsion = firstLevelDivisionComboBox.getSelectionModel().getSelectedItem();
             Integer fldID = firstLevelDivsion.getDivisionId();
             Integer customerId = Integer.parseInt(customerIdTextField.getText());
@@ -93,6 +93,12 @@ public class ModifyCustomerController implements Initializable {
     @FXML
     void onActionCancel(ActionEvent actionEvent) {
         Main.switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
+    }
+
+    @FXML
+    void onActionCountrySelected(ActionEvent actionEvent) {
+        Countries country = countryComboBox.getSelectionModel().getSelectedItem();
+        firstLevelDivisionComboBox.setItems(getFirstLevelDivisionOfCountry(country.getCountryId()));
     }
 
     public static void passPart (Customers customer) {
