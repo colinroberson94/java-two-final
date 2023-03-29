@@ -84,22 +84,33 @@ public class ModifyAppointmentController implements Initializable {
         Main.switchStage(event, "/roberson/qam2/appointment-screen.fxml");
     }
 
+    //TODO -- need to actually save these updates
+    @FXML
+    void onActionSave(ActionEvent event) {
+        System.out.println("Saving!.. Coming soon");
+    }
+
     public static void passAppointment(Appointments appointment) {
         ModifyAppointmentController.appointment = appointment;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println(appointment.getAppointmentDescription() + appointment.getAppointmentId());
         titleTextField.setText(appointment.getAppointmentTitle());
         descrTextField.setText(appointment.getAppointmentDescription());
         locationTextField.setText(appointment.getAppointmentLocation());
+
         contactComboBox.setItems(getAllContacts());
         contactComboBox.setValue(contact);
+
         typeTextField.setText(appointment.getAppointmentType());
         endTimeTextField.setText(appointment.getAppointmentEnd().toString());
         startTimeTextField.setText(appointment.getAppointmentStart().toString());
+
         userComboBox.setItems(getAllUsers());
         userComboBox.setValue(user);
+
         customerComboBox.setItems(getAllCustomers());
         customerComboBox.setValue(customer);
     }

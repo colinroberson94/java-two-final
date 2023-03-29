@@ -55,7 +55,7 @@ public class AppointmentScreenController implements Initializable {
 
             passAppointment(tempAppointment);
 
-            switchStage(actionEvent, "/roberson/qam2/modify-customer-screen.fxml");
+            switchStage(actionEvent, "/roberson/qam2/modify-appointment-screen.fxml");
         } catch (RuntimeException e) {
             Alert alert = new Alert(Alert.AlertType.NONE, "No customer selected. Please select a customer to modify.", ButtonType.OK);
             alert.showAndWait();
