@@ -1,5 +1,11 @@
 package model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import static DAO.CountryQuery.getAllCountries;
+import static DAO.CustomerQuery.getAllCustomers;
+
 public class Customers {
     private String customerName;
     private String customerAddress;
@@ -9,6 +15,8 @@ public class Customers {
     private Integer divisionId;
     private String customerCountry;
     private String customerFirstLevelDivision;
+    private static ObservableList<Customers> allCustomers = FXCollections.observableArrayList();
+
 
     public Customers(String customerName, String customerAddress, String customerPostalCode, String customerPhoneNumber,
                      Integer customerId, Integer divisionId, String customerCountry, String customerFirstLevelDivision) {
@@ -20,9 +28,11 @@ public class Customers {
         this.divisionId = divisionId;
         this.customerCountry = customerCountry;
         this.customerFirstLevelDivision = customerFirstLevelDivision;
-        //customerCountry = Countries.getCountryNameFromCountryId(
-        //                            FirstLevelDivision.getCountryIdFromDivisionId(divisionId));
-        //customerFirstLevelDivision = FirstLevelDivision.getFirstLevelDivisionFromDivisionId(divisionId);
+    }
+
+    @Override
+    public String toString() {
+        return customerName;
     }
 
     public void setCustomerName(String customerName) {
@@ -87,5 +97,16 @@ public class Customers {
 
     public void setCustomerFirstLevelDivision(String customerFirstLevelDivision) {
         this.customerFirstLevelDivision = customerFirstLevelDivision;
+    }
+
+    public static Customers getCustomerFromId(Integer id) {
+        allCustomers = getAllCustomers();
+
+        Customers customers = allCustomers.stream()
+                .filter(customer -> customer.getCustomerId().equals(id))
+                .findFirst()
+                .orElse(null);
+
+        return customers;
     }
 }

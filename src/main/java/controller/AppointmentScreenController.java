@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Appointments;
+import model.Customers;
 import roberson.qam2.Main;
 
 import java.net.URL;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import static DAO.AppointmentQuery.getAllAppointments;
+import static controller.ModifyAppointmentController.passAppointment;
 import static roberson.qam2.Main.switchStage;
 
 public class AppointmentScreenController implements Initializable {
@@ -44,24 +46,20 @@ public class AppointmentScreenController implements Initializable {
 
     @FXML
     void onActionUpdate(ActionEvent actionEvent) {
-        /*
         try {
             if (AppointmentTable.getSelectionModel().isEmpty()) {
                 throw new RuntimeException();
             }
 
-            Appointments tempAppt = AppointmentTable.getSelectionModel().getSelectedItem();
-            //int index = Inventory.getAllParts().indexOf(tempAppt);
+            Appointments tempAppointment = AppointmentTable.getSelectionModel().getSelectedItem();
 
-            ModifyAppointmentController.passAppointment(tempAppt, index);
+            passAppointment(tempAppointment);
 
-            switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
-
+            switchStage(actionEvent, "/roberson/qam2/modify-customer-screen.fxml");
         } catch (RuntimeException e) {
-            Alert alert = new Alert(Alert.AlertType.NONE, "No appointment selected. Please select an appointment to modify", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.NONE, "No customer selected. Please select a customer to modify.", ButtonType.OK);
             alert.showAndWait();
         }
-        */
     }
 
     @FXML

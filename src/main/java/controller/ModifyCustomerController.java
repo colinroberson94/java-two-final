@@ -13,9 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static DAO.CountryQuery.getAllCountries;
-import static DAO.CustomerQuery.addCustomer;
 import static DAO.CustomerQuery.updateCustomer;
-import static DAO.FirstLevelDivisionQuery.getAllFirstLevelDivisions;
 import static model.Countries.getCountryFromName;
 import static model.FirstLevelDivision.getFirstLevelDivisionFromName;
 import static model.FirstLevelDivision.getFirstLevelDivisionOfCountry;
@@ -92,6 +90,7 @@ public class ModifyCustomerController implements Initializable {
 
     @FXML
     void onActionCancel(ActionEvent actionEvent) {
+        customer = null;
         Main.switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
     }
 
@@ -101,7 +100,7 @@ public class ModifyCustomerController implements Initializable {
         firstLevelDivisionComboBox.setItems(getFirstLevelDivisionOfCountry(country.getCountryId()));
     }
 
-    public static void passPart (Customers customer) {
+    public static void passCustomer (Customers customer) {
         ModifyCustomerController.customer = customer;
     }
 }

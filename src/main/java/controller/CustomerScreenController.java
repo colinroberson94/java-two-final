@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 import static DAO.CustomerQuery.deleteCustomer;
 import static DAO.CustomerQuery.getAllCustomers;
 import static DAO.FirstLevelDivisionQuery.getAllFirstLevelDivisions;
-import static controller.ModifyCustomerController.passPart;
+import static controller.ModifyCustomerController.passCustomer;
 import static roberson.qam2.Main.switchStage;
 
 public class CustomerScreenController implements Initializable {
@@ -71,7 +71,7 @@ public class CustomerScreenController implements Initializable {
 
             Customers tempCustomer = CustomerTable.getSelectionModel().getSelectedItem();
 
-            passPart(tempCustomer);
+            passCustomer(tempCustomer);
 
             switchStage(actionEvent, "/roberson/qam2/modify-customer-screen.fxml");
         } catch (RuntimeException e) {
