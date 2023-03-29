@@ -10,6 +10,7 @@ import roberson.qam2.Main;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
 import static DAO.AppointmentQuery.addAppointment;
@@ -74,22 +75,25 @@ public class AddAppointmentController implements Initializable {
         try {
             LocalDateTime testing = startDatePicker.getValue().atTime(LocalTime.parse(startTimeTextField.getText()));
 
-//            String title = titleTextField.getText();
-//            String description = descrTextField.getText();
-//            String location = locationTextField.getText();
-//            String type = typeTextField.getText();
-//            LocalDateTime start = startTimeTextField.getText().toLocalDateTime();
-//            LocalDateTime end = endTimeTextField.getText().toLocalDateTime();
-//            int userId = Integer.parseInt(userIdTextField.getText());
-//            int customerId = Integer.parseInt(customerIdTextField.getText());
-//            int contactId = Integer.parseInt(contactTextField.getText());
-//            addAppointment(title, description, location, type, start, end, userId, customerId, contactId);
-//
-//           Main.switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
+            String title = titleTextField.getText();
+            String description = descrTextField.getText();
+            String location = locationTextField.getText();
+            String type = typeTextField.getText();
+            LocalDateTime start = startDatePicker.getValue().atTime(LocalTime.parse(startTimeTextField.getText()));
+            LocalDateTime end = endDatePicker.getValue().atTime(LocalTime.parse(endTimeTextField.getText()));
+            int userId = Integer.parseInt(userIdTextField.getText());
+            int customerId = Integer.parseInt(customerIdTextField.getText());
+            int contactId = Integer.parseInt(contactTextField.getText());
+            addAppointment(title, description, location, type, start, end, userId, customerId, contactId);
+
+           Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
             System.out.println(testing);
 
         } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please input a valid number", ButtonType.OK);
+            alert.showAndWait();
+        } catch (DateTimeParseException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please input a valid time (HH:MM:SS)", ButtonType.OK);
             alert.showAndWait();
         } catch (RuntimeException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getLocalizedMessage(), ButtonType.OK);
