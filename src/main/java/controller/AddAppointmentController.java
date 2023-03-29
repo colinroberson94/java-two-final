@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.Appointments;
+import model.Contacts;
+import model.Customers;
+import model.Users;
 import roberson.qam2.Main;
 
 import java.net.URL;
@@ -14,6 +17,9 @@ import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
 import static DAO.AppointmentQuery.addAppointment;
+import static DAO.ContactsQuery.getAllContacts;
+import static DAO.CustomerQuery.getAllCustomers;
+import static DAO.UsersQuery.getAllUsers;
 
 public class AddAppointmentController implements Initializable {
 
@@ -48,17 +54,17 @@ public class AddAppointmentController implements Initializable {
     @FXML
     private TextField locationTextField;
     @FXML
-    private TextField contactTextField;
-    @FXML
     private TextField typeTextField;
     @FXML
     private TextField endTimeTextField;
     @FXML
     private TextField startTimeTextField;
     @FXML
-    private TextField userIdTextField;
+    private ComboBox<Contacts> contactComboBox;
     @FXML
-    private TextField customerIdTextField;
+    private ComboBox<Customers> customerComboBox;
+    @FXML
+    private ComboBox<Users> userComboBox;
     @FXML
     private TextField apptIdTextField;
     @FXML
@@ -81,9 +87,16 @@ public class AddAppointmentController implements Initializable {
             String type = typeTextField.getText();
             LocalDateTime start = startDatePicker.getValue().atTime(LocalTime.parse(startTimeTextField.getText()));
             LocalDateTime end = endDatePicker.getValue().atTime(LocalTime.parse(endTimeTextField.getText()));
-            int userId = Integer.parseInt(userIdTextField.getText());
-            int customerId = Integer.parseInt(customerIdTextField.getText());
-            int contactId = Integer.parseInt(contactTextField.getText());
+
+            Users user = userComboBox.getSelectionModel().getSelectedItem();
+            int userId = user.getUserId();
+
+            Customers customer = customerComboBox.getSelectionModel().getSelectedItem();
+            int customerId = customer.getCustomerId();
+
+            Contacts contact = contactComboBox.getSelectionModel().getSelectedItem();
+            int contactId = contact.getContactId();
+
             addAppointment(title, description, location, type, start, end, userId, customerId, contactId);
 
            Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
@@ -102,7 +115,9 @@ public class AddAppointmentController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
+        contactComboBox.setItems(getAllContacts());
+        customerComboBox.setItems(getAllCustomers());
+        userComboBox.setItems(getAllUsers());
     }
     
 }
