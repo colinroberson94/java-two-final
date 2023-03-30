@@ -50,6 +50,7 @@ public class CustomerScreenController implements Initializable {
 
     @FXML
     void OnActionReports(ActionEvent actionEvent) {
+        switchStage(actionEvent, "/roberson/qam2/reports-screen.fxml");
     }
 
     @FXML
