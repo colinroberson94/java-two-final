@@ -11,12 +11,12 @@ import model.Users;
 import roberson.qam2.Main;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
-import static DAO.AppointmentQuery.addAppointment;
 import static DAO.AppointmentQuery.updateAppointment;
 import static DAO.ContactsQuery.getAllContacts;
 import static DAO.CustomerQuery.getAllCustomers;
@@ -86,12 +86,9 @@ public class ModifyAppointmentController implements Initializable {
         Main.switchStage(event, "/roberson/qam2/appointment-screen.fxml");
     }
 
-    //TODO -- need to actually save these updates
     @FXML
     void onActionSave(ActionEvent actionEvent) {
         try {
-            LocalDateTime testing = startDatePicker.getValue().atTime(LocalTime.parse(startTimeTextField.getText()));
-
             String title = titleTextField.getText();
             String description = descrTextField.getText();
             String location = locationTextField.getText();
@@ -113,7 +110,6 @@ public class ModifyAppointmentController implements Initializable {
             updateAppointment(title, description, location, type, start, end, userId, customerId, contactId, apptId);
 
             Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
-            System.out.println(testing);
 
         } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please input a valid number", ButtonType.OK);
@@ -133,7 +129,6 @@ public class ModifyAppointmentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(appointment.getAppointmentDescription() + appointment.getAppointmentId());
         titleTextField.setText(appointment.getAppointmentTitle());
         descrTextField.setText(appointment.getAppointmentDescription());
         locationTextField.setText(appointment.getAppointmentLocation());
@@ -142,8 +137,17 @@ public class ModifyAppointmentController implements Initializable {
         contactComboBox.setValue(contact);
 
         typeTextField.setText(appointment.getAppointmentType());
-        endTimeTextField.setText(appointment.getAppointmentEnd().toString());
-        startTimeTextField.setText(appointment.getAppointmentStart().toString());
+
+        //Convert start and end timestamps into separate date and times.
+        LocalDate apptStartDate = appointment.getAppointmentStart().toLocalDate();
+        LocalDate apptEndDate = appointment.getAppointmentEnd().toLocalDate();
+        LocalTime apptStartTime = appointment.getAppointmentStart().toLocalTime();
+        LocalTime apptEndTime = appointment.getAppointmentEnd().toLocalTime();
+
+        startDatePicker.setValue(apptStartDate);
+        endDatePicker.setValue(apptEndDate);
+        endTimeTextField.setText(apptEndTime.toString());
+        startTimeTextField.setText(apptStartTime.toString());
 
         userComboBox.setItems(getAllUsers());
         userComboBox.setValue(user);
