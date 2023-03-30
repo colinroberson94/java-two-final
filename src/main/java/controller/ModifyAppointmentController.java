@@ -3,10 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import model.Appointments;
 import model.Contacts;
 import model.Customers;
@@ -14,8 +11,13 @@ import model.Users;
 import roberson.qam2.Main;
 
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
+import static DAO.AppointmentQuery.addAppointment;
+import static DAO.AppointmentQuery.updateAppointment;
 import static DAO.ContactsQuery.getAllContacts;
 import static DAO.CustomerQuery.getAllCustomers;
 import static DAO.UsersQuery.getAllUsers;
@@ -86,8 +88,43 @@ public class ModifyAppointmentController implements Initializable {
 
     //TODO -- need to actually save these updates
     @FXML
-    void onActionSave(ActionEvent event) {
-        System.out.println("Saving!.. Coming soon");
+    void onActionSave(ActionEvent actionEvent) {
+        try {
+            LocalDateTime testing = startDatePicker.getValue().atTime(LocalTime.parse(startTimeTextField.getText()));
+
+            String title = titleTextField.getText();
+            String description = descrTextField.getText();
+            String location = locationTextField.getText();
+            String type = typeTextField.getText();
+            LocalDateTime start = startDatePicker.getValue().atTime(LocalTime.parse(startTimeTextField.getText()));
+            LocalDateTime end = endDatePicker.getValue().atTime(LocalTime.parse(endTimeTextField.getText()));
+
+            Users user = userComboBox.getSelectionModel().getSelectedItem();
+            int userId = user.getUserId();
+
+            Customers customer = customerComboBox.getSelectionModel().getSelectedItem();
+            int customerId = customer.getCustomerId();
+
+            Contacts contact = contactComboBox.getSelectionModel().getSelectedItem();
+            int contactId = contact.getContactId();
+
+            int apptId = appointment.getAppointmentId();
+
+            updateAppointment(title, description, location, type, start, end, userId, customerId, contactId, apptId);
+
+            Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
+            System.out.println(testing);
+
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please input a valid number", ButtonType.OK);
+            alert.showAndWait();
+        } catch (DateTimeParseException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please input a valid time (HH:MM:SS)", ButtonType.OK);
+            alert.showAndWait();
+        } catch (RuntimeException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getLocalizedMessage(), ButtonType.OK);
+            alert.showAndWait();
+        }
     }
 
     public static void passAppointment(Appointments appointment) {

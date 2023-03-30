@@ -7,13 +7,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Appointments;
-import model.Customers;
-import roberson.qam2.Main;
 
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
+import static DAO.AppointmentQuery.deleteAppointment;
 import static DAO.AppointmentQuery.getAllAppointments;
 import static controller.ModifyAppointmentController.passAppointment;
 import static roberson.qam2.Main.switchStage;
@@ -64,7 +63,23 @@ public class AppointmentScreenController implements Initializable {
 
     @FXML
     void onActionDelete(ActionEvent actionEvent) {
+        try {
+            if (AppointmentTable.getSelectionModel().isEmpty()) {
+                throw new RuntimeException();
+            }
+            Appointments appointment = AppointmentTable.getSelectionModel().getSelectedItem();
 
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete " + appointment.getAppointmentTitle() + " ?", ButtonType.YES, ButtonType.NO);
+            alert.showAndWait();
+
+            if (alert.getResult() == ButtonType.YES) {
+                deleteAppointment(appointment.getAppointmentId());
+                AppointmentTable.setItems(getAllAppointments());
+            }
+        } catch (RuntimeException e) {
+            Alert alert = new Alert(Alert.AlertType.NONE, "No appointment selected. Please select an appointment and then delete.", ButtonType.OK);
+            alert.showAndWait();
+        }
     }
 
     @FXML
