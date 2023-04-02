@@ -21,13 +21,11 @@ public class LoginScreenController implements Initializable {
     public Label userLocation;
     public TextField usernameField;
     public PasswordField passwordField;
-    public MenuButton languageSelector;
     public Button submitLoginButton;
     public Button cancelLoginButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // testing resource bundle and changing languages
             ZoneId zone = ZoneId.systemDefault();
             userLocation.setText(zone.toString());
 

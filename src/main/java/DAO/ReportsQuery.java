@@ -21,7 +21,7 @@ public abstract class ReportsQuery {
 
             while (rs.next()) {
                 String type = rs.getString("Type");
-                String month = rs.getString("Month");
+                Integer month = rs.getInt("Month");
                 Integer total = rs.getInt("Total");
 
                 Reports report = new Reports(type, month, total);

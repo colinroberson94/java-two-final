@@ -6,9 +6,9 @@ public class Reports {
     private String name;
     private Integer total;
 
-    public Reports(String type, String month, Integer total) {
+    public Reports(String type, int month, Integer total) {
         this.type = type;
-        this.month = month;
+        this.month = getMonthFromInt(month);
         this.total = total;
     }
 
@@ -33,19 +33,9 @@ public class Reports {
         return total;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+    private String getMonthFromInt(Integer monthInt) {
+        String[] month = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
-    public void setMonth(String month) {
-        this.month = month;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setTotal(Integer total) {
-        this.total = total;
+        return month[monthInt - 1];
     }
 }
