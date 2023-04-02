@@ -2,13 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="600.0" maxWidth="1200.0" minHeight="600.0" minWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportsController">
+<AnchorPane maxHeight="765.0" maxWidth="1200.0" minHeight="600.0" minWidth="876.0" prefHeight="765.0" prefWidth="876.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportsController">
     <children>
-        <TableView fx:id="AppointmentTable" layoutX="26.0" layoutY="300.0" prefHeight="250.0" prefWidth="826.0">
+        <TableView fx:id="AppointmentTable" layoutX="25.0" layoutY="94.0" prefHeight="300.0" prefWidth="826.0">
             <columns>
                 <TableColumn fx:id="AppointmentIdCol" prefWidth="100.0" text="Appointment ID" />
                 <TableColumn fx:id="AppointmentTitleCol" prefWidth="100.0" text="Title" />
@@ -19,10 +21,38 @@
                 <TableColumn fx:id="AppointmentCustomerIdCol" prefWidth="100.0" text="Customer ID" />
             </columns>
         </TableView>
-        <Button layoutX="25.0" layoutY="561.0" mnemonicParsing="false" onAction="#onActionExit" text="Exit" />
+        <Button layoutX="25.0" layoutY="725.0" mnemonicParsing="false" onAction="#onActionExit" text="Exit" />
         <Button layoutX="25.0" layoutY="17.0" mnemonicParsing="false" onAction="#OnActionAppointments" prefHeight="26.0" prefWidth="95.0" text="Appointments" />
         <Button layoutX="235.0" layoutY="17.0" mnemonicParsing="false" onAction="#OnActionReports" prefHeight="26.0" prefWidth="95.0" text="Reports" />
         <Button layoutX="130.0" layoutY="17.0" mnemonicParsing="false" onAction="#OnActionCustomers" prefHeight="26.0" prefWidth="95.0" text="Customers" />
-      <ComboBox fx:id="contactComboBox" layoutX="25.0" layoutY="263.0" onAction="#OnActionContactSelected" prefWidth="150.0" promptText="Select a Contact" />
+      <ComboBox fx:id="contactComboBox" layoutX="218.0" layoutY="58.0" onAction="#OnActionContactSelected" prefWidth="150.0" promptText="Select a Contact" />
+      <TableView fx:id="TypeAndMonthTotalTable" layoutX="97.0" layoutY="461.0" prefHeight="250.0" prefWidth="277.0">
+         <columns>
+            <TableColumn fx:id="ReportTypeCol" prefWidth="100.0" text="Type" />
+            <TableColumn fx:id="ReportMonthCol" prefWidth="100.0" text="Month" />
+            <TableColumn fx:id="ReportTotalCol" prefWidth="76.0" text="Total" />
+         </columns>
+      </TableView>
+      <Label fx:id="viewApptsByContactLabel" layoutX="25.0" layoutY="62.0" text="View Appointments by Contact:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalApptsByTypeMonthLabel" layoutX="102.0" layoutY="435.0" text="Total appointments by Type and Month:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TableView fx:id="CustomerTotalTable" layoutX="525.0" layoutY="461.0" prefHeight="250.0" prefWidth="277.0">
+         <columns>
+            <TableColumn fx:id="ReportCustomerNameCol" prefWidth="147.0" text="Name" />
+            <TableColumn fx:id="ReportCustomerTotalCol" prefWidth="129.0" text="Total" />
+         </columns>
+      </TableView>
+      <Label fx:id="totalApptsByCustomerLabel" layoutX="525.0" layoutY="435.0" text="Total appointments by Customer:">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

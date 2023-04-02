@@ -3,7 +3,6 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import static DAO.CountryQuery.getAllCountries;
 import static DAO.CustomerQuery.getAllCustomers;
 
 public class Customers {
