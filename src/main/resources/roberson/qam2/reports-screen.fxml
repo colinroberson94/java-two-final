@@ -35,12 +35,12 @@
       </TableView>
       <Label fx:id="viewApptsByContactLabel" layoutX="25.0" layoutY="62.0" text="View Appointments by Contact:">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System" size="13.0" />
          </font>
       </Label>
       <Label fx:id="totalApptsByTypeMonthLabel" layoutX="102.0" layoutY="435.0" text="Total appointments by Type and Month:">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System" size="13.0" />
          </font>
       </Label>
       <TableView fx:id="CustomerTotalTable" layoutX="525.0" layoutY="461.0" prefHeight="250.0" prefWidth="277.0">
@@ -51,7 +51,7 @@
       </TableView>
       <Label fx:id="totalApptsByCustomerLabel" layoutX="525.0" layoutY="435.0" text="Total appointments by Customer:">
          <font>
-            <Font name="System Bold Italic" size="14.0" />
+            <Font name="System" size="13.0" />
          </font>
       </Label>
     </children>

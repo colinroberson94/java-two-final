@@ -16,7 +16,6 @@ import java.util.ResourceBundle;
 
 import static DAO.ContactsQuery.getAllContacts;
 import static model.Appointments.getAppointmentsListByContact;
-import static model.Appointments.getAppointmentsListByUser;
 import static roberson.qam2.Main.switchStage;
 
 public class ReportsController implements Initializable {
@@ -63,6 +62,9 @@ public class ReportsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactComboBox.setItems(getAllContacts());
+        //CustomerTotalTable.setItems();
+        //TypeAndMonthTotalTable.setItems(getAppointmentsByTypeAndMonth());
+
     }
 
     @FXML
