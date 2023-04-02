@@ -9,12 +9,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Contacts;
-import model.Users;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import static DAO.ContactsQuery.getAllContacts;
+import static DAO.ReportsQuery.getTotalAppointmentsByCustomer;
+import static DAO.ReportsQuery.getTotalAppointmentsByTypeAndMonth;
 import static model.Appointments.getAppointmentsListByContact;
 import static roberson.qam2.Main.switchStage;
 
@@ -62,8 +63,14 @@ public class ReportsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactComboBox.setItems(getAllContacts());
-        //CustomerTotalTable.setItems();
-        //TypeAndMonthTotalTable.setItems(getAppointmentsByTypeAndMonth());
+        CustomerTotalTable.setItems(getTotalAppointmentsByCustomer());
+        ReportCustomerNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        ReportCustomerTotalCol.setCellValueFactory(new PropertyValueFactory<>("total"));
+
+        TypeAndMonthTotalTable.setItems(getTotalAppointmentsByTypeAndMonth());
+        ReportTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        ReportMonthCol.setCellValueFactory(new PropertyValueFactory<>("month"));
+        ReportTotalCol.setCellValueFactory(new PropertyValueFactory<>("total"));
 
     }
 
