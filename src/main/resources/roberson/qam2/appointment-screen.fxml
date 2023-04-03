@@ -29,13 +29,13 @@
       <Button layoutX="1115.0" layoutY="561.0" mnemonicParsing="false" onAction="#onActionDelete" prefHeight="26.0" prefWidth="60.0" text="Delete" />
       <Button layoutX="1045.0" layoutY="561.0" mnemonicParsing="false" onAction="#onActionUpdate" prefHeight="26.0" prefWidth="60.0" text="Update" />
       <Button layoutX="975.0" layoutY="561.0" mnemonicParsing="false" onAction="#onActionAdd" prefHeight="26.0" prefWidth="60.0" text="Add" />
-      <RadioButton layoutX="975.0" layoutY="21.0" mnemonicParsing="false" text="By week">
+      <RadioButton layoutX="975.0" layoutY="21.0" mnemonicParsing="false" onAction="#OnActionViewWeekly" text="By week">
          <toggleGroup>
             <ToggleGroup fx:id="AppointmentViewTG" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="1075.0" layoutY="21.0" mnemonicParsing="false" text="By month" toggleGroup="$AppointmentViewTG" />
-      <RadioButton layoutX="900.0" layoutY="21.0" mnemonicParsing="false" selected="true" text="All" toggleGroup="$AppointmentViewTG" />
+      <RadioButton layoutX="1075.0" layoutY="21.0" mnemonicParsing="false" onAction="#OnActionViewMonthly" text="By month" toggleGroup="$AppointmentViewTG" />
+      <RadioButton layoutX="900.0" layoutY="21.0" mnemonicParsing="false" onAction="#OnActionViewAll" selected="true" text="All" toggleGroup="$AppointmentViewTG" />
       <Label layoutX="855.0" layoutY="21.0" text="View:">
          <font>
             <Font name="System Bold" size="14.0" />

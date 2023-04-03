@@ -107,4 +107,70 @@ public abstract class AppointmentQuery {
             throwables.printStackTrace();
         }
     }
+
+    public static ObservableList<Appointments> getWeeklyAppointments() {
+        ObservableList<Appointments> weeklyAppointmentsObservableList = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT * FROM appointments WHERE WEEK (start) = WEEK(current_date) AND YEAR(start) = YEAR(current_date);";
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int appointmentId = rs.getInt("Appointment_ID");
+                String appointmentTitle = rs.getString("Title");
+                String appointmentDescription = rs.getString("Description");
+                String appointmentLocation = rs.getString("Location");
+                String appointmentType = rs.getString("Type");
+                LocalDateTime appointmentStart = rs.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime appointmentEnd = rs.getTimestamp("End").toLocalDateTime();
+                Integer userId = rs.getInt("User_ID");
+                Integer customerId = rs.getInt("Customer_ID");
+                Integer contactId = rs.getInt("Contact_ID");
+
+                Appointments appt = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation,
+                        appointmentType, appointmentStart, appointmentEnd, userId, customerId, contactId);
+
+                weeklyAppointmentsObservableList.add(appt);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return weeklyAppointmentsObservableList;
+    }
+
+    public static ObservableList<Appointments> getMonthlyAppointments() {
+        ObservableList<Appointments> weeklyAppointmentsObservableList = FXCollections.observableArrayList();
+
+        try {
+            String sql = "SELECT * FROM appointments WHERE MONTH(start) = MONTH(current_date) AND YEAR(start) = YEAR(current_date);";
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int appointmentId = rs.getInt("Appointment_ID");
+                String appointmentTitle = rs.getString("Title");
+                String appointmentDescription = rs.getString("Description");
+                String appointmentLocation = rs.getString("Location");
+                String appointmentType = rs.getString("Type");
+                LocalDateTime appointmentStart = rs.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime appointmentEnd = rs.getTimestamp("End").toLocalDateTime();
+                Integer userId = rs.getInt("User_ID");
+                Integer customerId = rs.getInt("Customer_ID");
+                Integer contactId = rs.getInt("Contact_ID");
+
+                Appointments appt = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation,
+                        appointmentType, appointmentStart, appointmentEnd, userId, customerId, contactId);
+
+                weeklyAppointmentsObservableList.add(appt);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return weeklyAppointmentsObservableList;
+    }
 }

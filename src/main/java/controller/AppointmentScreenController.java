@@ -12,8 +12,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
-import static DAO.AppointmentQuery.deleteAppointment;
-import static DAO.AppointmentQuery.getAllAppointments;
+import static DAO.AppointmentQuery.*;
 import static controller.ModifyAppointmentController.passAppointment;
 import static roberson.qam2.Main.switchStage;
 
@@ -132,5 +131,17 @@ public class AppointmentScreenController implements Initializable {
         AppointmentEndCol.setCellValueFactory(new PropertyValueFactory<>("appointmentEnd"));
         AppointmentCustomerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         AppointmentUserIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+    }
+
+    public void OnActionViewWeekly(ActionEvent actionEvent) {
+        AppointmentTable.setItems(getWeeklyAppointments());
+    }
+
+    public void OnActionViewMonthly(ActionEvent actionEvent) {
+        AppointmentTable.setItems(getMonthlyAppointments());
+    }
+
+    public void OnActionViewAll(ActionEvent actionEvent) {
+        AppointmentTable.setItems(getAllAppointments());
     }
 }

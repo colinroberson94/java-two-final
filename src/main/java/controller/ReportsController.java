@@ -63,6 +63,7 @@ public class ReportsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactComboBox.setItems(getAllContacts());
+
         CustomerTotalTable.setItems(getTotalAppointmentsByCustomer());
         ReportCustomerNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         ReportCustomerTotalCol.setCellValueFactory(new PropertyValueFactory<>("total"));
