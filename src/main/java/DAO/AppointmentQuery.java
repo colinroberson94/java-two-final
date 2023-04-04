@@ -185,4 +185,20 @@ public abstract class AppointmentQuery {
 
         return weeklyAppointmentsObservableList;
     }
+
+    public static String getAppointmentsWithinFifteenMin() {
+        try {
+            String sql = "SELECT * FROM appointments WHERE start between now() and now() + interval 15 minute;";
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            rs.next();
+            String appointmentTitle = rs.getString("Title");
+
+            return appointmentTitle;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
 }

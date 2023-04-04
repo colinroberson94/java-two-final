@@ -3,6 +3,8 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDateTime;
+
 import static DAO.UsersQuery.getAllUsers;
 
 public class Users {

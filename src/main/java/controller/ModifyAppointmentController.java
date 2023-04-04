@@ -129,6 +129,7 @@ public class ModifyAppointmentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        apptIdTextField.setText(String.valueOf(appointment.getAppointmentId()));
         titleTextField.setText(appointment.getAppointmentTitle());
         descrTextField.setText(appointment.getAppointmentDescription());
         locationTextField.setText(appointment.getAppointmentLocation());
@@ -138,7 +139,6 @@ public class ModifyAppointmentController implements Initializable {
 
         typeTextField.setText(appointment.getAppointmentType());
 
-        //Convert start and end timestamps into separate date and times.
         LocalDate apptStartDate = appointment.getAppointmentStart().toLocalDate();
         LocalDate apptEndDate = appointment.getAppointmentEnd().toLocalDate();
         LocalTime apptStartTime = appointment.getAppointmentStart().toLocalTime();

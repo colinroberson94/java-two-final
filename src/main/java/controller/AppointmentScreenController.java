@@ -105,11 +105,12 @@ public class AppointmentScreenController implements Initializable {
 
             if (alert.getResult() == ButtonType.YES) {
                 deleteAppointment(appointment.getAppointmentId());
-                AppointmentTable.setItems(getAllAppointments());
 
                 Alert confirmation = new Alert(Alert.AlertType.NONE, "The " + appointment.getAppointmentType() + " appointment, "
                         + appointment.getAppointmentId() +", has been deleted.", ButtonType.OK);
                 confirmation.showAndWait();
+
+                AppointmentTable.setItems(getAllAppointments());
             }
         } catch (RuntimeException e) {
             Alert alert = new Alert(Alert.AlertType.NONE, "No appointment selected. Please select an appointment and then delete.", ButtonType.OK);

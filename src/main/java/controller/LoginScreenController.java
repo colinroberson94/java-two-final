@@ -15,6 +15,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
+import static DAO.AppointmentQuery.getAppointmentsWithinFifteenMin;
 import static DAO.UsersQuery.verifyUser;
 
 public class LoginScreenController implements Initializable {
@@ -50,15 +51,18 @@ public class LoginScreenController implements Initializable {
             FileWriter logFile = new FileWriter("login_activity.txt", true);
             PrintWriter outputLog = new PrintWriter(logFile);
 
-            if (verifyUser(username, password)) {
+            if (username.isEmpty() || password.isEmpty()) {
+                throw new IllegalArgumentException();
+            } else if (verifyUser(username, password)) {
                 outputLog.println(Timestamp.valueOf(LocalDateTime.now()) + ": " + username + " SUCCESSFULLY logged in.");
                 outputLog.close();
+                // TODO This works if the query returns a result, but fails if the query returns no results.
+                if (!getAppointmentsWithinFifteenMin().isEmpty()) {
+                    Alert alert = new Alert(Alert.AlertType.NONE, getAppointmentsWithinFifteenMin() + " begins within 15 minutes", ButtonType.OK);
+                    alert.showAndWait();
+                }
                 Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
-            }
-            else if (username.isEmpty() || password.isEmpty()) {
-                throw new IllegalArgumentException();
-            }
-            else {
+            } else {
                 outputLog.println(Timestamp.valueOf(LocalDateTime.now()) + ": " + username + " FAILED to log in.");
                 outputLog.close();
                 throw new Exception();
