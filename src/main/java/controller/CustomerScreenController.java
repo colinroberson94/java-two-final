@@ -13,6 +13,7 @@ import roberson.qam2.Main;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static DAO.AppointmentQuery.deleteCustomerAppointments;
 import static DAO.CustomerQuery.deleteCustomer;
 import static DAO.CustomerQuery.getAllCustomers;
 import static DAO.FirstLevelDivisionQuery.getAllFirstLevelDivisions;
@@ -81,7 +82,6 @@ public class CustomerScreenController implements Initializable {
         }
     }
 
-// TODO - need to ensure that all appointments are deleted in the table PRIOR to the customer being deleted.
     @FXML
     void OnActionDelete(ActionEvent actionEvent) {
         try {
@@ -94,6 +94,7 @@ public class CustomerScreenController implements Initializable {
             alert.showAndWait();
 
             if (alert.getResult() == ButtonType.YES) {
+                deleteCustomerAppointments(customer.getCustomerId());
                 deleteCustomer(customer.getCustomerId());
                 CustomerTable.setItems(getAllCustomers());
             }

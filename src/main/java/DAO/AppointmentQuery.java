@@ -83,6 +83,18 @@ public abstract class AppointmentQuery {
         }
     }
 
+    public static void deleteCustomerAppointments(Integer customerId) {
+        try {
+            String sql = "DELETE FROM appointments WHERE Customer_ID = ?";
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            ps.setInt(1, customerId);
+
+            ps.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public static void updateAppointment(String title, String description, String location, String type, LocalDateTime appointmentStart,
                                          LocalDateTime appointmentEnd, Integer userId, Integer customerId, Integer contactId, Integer appointmentId) {
         try {
