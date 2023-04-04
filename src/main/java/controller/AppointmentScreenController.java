@@ -17,6 +17,38 @@ import static controller.ModifyAppointmentController.passAppointment;
 import static roberson.qam2.Main.switchStage;
 
 public class AppointmentScreenController implements Initializable {
+    @FXML
+    private TableColumn<Appointments, Integer> AppointmentIdCol;
+
+    @FXML
+    private TableColumn<Appointments, String> AppointmentTitleCol;
+
+    @FXML
+    private TableColumn<Appointments, String> AppointmentDescrCol;
+
+    @FXML
+    private TableColumn<Appointments, String> AppointmentLocationCol;
+
+    @FXML
+    private TableColumn<Appointments, String> AppointmentContactCol;
+
+    @FXML
+    private TableColumn<Appointments, String> AppointmentTypeCol;
+
+    @FXML
+    private TableColumn<Appointments, LocalDateTime> AppointmentStartCol;
+
+    @FXML
+    private TableColumn<Appointments, LocalDateTime> AppointmentEndCol;
+
+    @FXML
+    private TableColumn<Appointments, Integer> AppointmentCustomerIdCol;
+
+    @FXML
+    private TableColumn<Appointments, Integer> AppointmentUserIdCol;
+
+    @FXML
+    private TableView<Appointments> AppointmentTable;
 
     @FXML
     void onActionExit(ActionEvent actionEvent) {
@@ -60,7 +92,6 @@ public class AppointmentScreenController implements Initializable {
             alert.showAndWait();
         }
     }
-
     @FXML
     void onActionDelete(ActionEvent actionEvent) {
         try {
@@ -75,6 +106,10 @@ public class AppointmentScreenController implements Initializable {
             if (alert.getResult() == ButtonType.YES) {
                 deleteAppointment(appointment.getAppointmentId());
                 AppointmentTable.setItems(getAllAppointments());
+
+                Alert confirmation = new Alert(Alert.AlertType.NONE, "The " + appointment.getAppointmentType() + " appointment, "
+                        + appointment.getAppointmentId() +", has been deleted.", ButtonType.OK);
+                confirmation.showAndWait();
             }
         } catch (RuntimeException e) {
             Alert alert = new Alert(Alert.AlertType.NONE, "No appointment selected. Please select an appointment and then delete.", ButtonType.OK);
@@ -83,38 +118,19 @@ public class AppointmentScreenController implements Initializable {
     }
 
     @FXML
-    private TableColumn<Appointments, Integer> AppointmentIdCol;
+    void OnActionViewWeekly(ActionEvent actionEvent) {
+        AppointmentTable.setItems(getWeeklyAppointments());
+    }
 
     @FXML
-    private TableColumn<Appointments, String> AppointmentTitleCol;
+    void OnActionViewMonthly(ActionEvent actionEvent) {
+        AppointmentTable.setItems(getMonthlyAppointments());
+    }
 
     @FXML
-    private TableColumn<Appointments, String> AppointmentDescrCol;
-
-    @FXML
-    private TableColumn<Appointments, String> AppointmentLocationCol;
-
-    @FXML
-    private TableColumn<Appointments, String> AppointmentContactCol;
-
-    @FXML
-    private TableColumn<Appointments, String> AppointmentTypeCol;
-
-    @FXML
-    private TableColumn<Appointments, LocalDateTime> AppointmentStartCol;
-
-    @FXML
-    private TableColumn<Appointments, LocalDateTime> AppointmentEndCol;
-
-    @FXML
-    private TableColumn<Appointments, Integer> AppointmentCustomerIdCol;
-
-    @FXML
-    private TableColumn<Appointments, Integer> AppointmentUserIdCol;
-
-    @FXML
-    private TableView<Appointments> AppointmentTable;
-
+    void OnActionViewAll(ActionEvent actionEvent) {
+        AppointmentTable.setItems(getAllAppointments());
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<Appointments> allAppointments = getAllAppointments();
@@ -133,15 +149,4 @@ public class AppointmentScreenController implements Initializable {
         AppointmentUserIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
     }
 
-    public void OnActionViewWeekly(ActionEvent actionEvent) {
-        AppointmentTable.setItems(getWeeklyAppointments());
-    }
-
-    public void OnActionViewMonthly(ActionEvent actionEvent) {
-        AppointmentTable.setItems(getMonthlyAppointments());
-    }
-
-    public void OnActionViewAll(ActionEvent actionEvent) {
-        AppointmentTable.setItems(getAllAppointments());
-    }
 }
