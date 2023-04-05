@@ -56,11 +56,15 @@ public class LoginScreenController implements Initializable {
             } else if (verifyUser(username, password)) {
                 outputLog.println(Timestamp.valueOf(LocalDateTime.now()) + ": " + username + " SUCCESSFULLY logged in.");
                 outputLog.close();
-                // TODO This works if the query returns a result, but fails if the query returns no results.
-                if (!getAppointmentsWithinFifteenMin().isEmpty()) {
-                    Alert alert = new Alert(Alert.AlertType.NONE, getAppointmentsWithinFifteenMin() + " begins within 15 minutes", ButtonType.OK);
+
+                // Check if there are any appointments. If the response is not null, then display a pop up with the name of the appointment.
+                // TODO Need to get this from the user object
+                String appt = getAppointmentsWithinFifteenMin(1);
+                if (!(appt == null)) {
+                    Alert alert = new Alert(Alert.AlertType.NONE, appt + " begins within 15 minutes", ButtonType.OK);
                     alert.showAndWait();
                 }
+
                 Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
             } else {
                 outputLog.println(Timestamp.valueOf(LocalDateTime.now()) + ": " + username + " FAILED to log in.");

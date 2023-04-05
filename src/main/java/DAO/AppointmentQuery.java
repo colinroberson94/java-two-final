@@ -186,16 +186,21 @@ public abstract class AppointmentQuery {
         return weeklyAppointmentsObservableList;
     }
 
-    public static String getAppointmentsWithinFifteenMin() {
+    public static String getAppointmentsWithinFifteenMin(Integer userId) {
         try {
-            String sql = "SELECT * FROM appointments WHERE start between now() and now() + interval 15 minute;";
+            String sql = "SELECT * FROM appointments WHERE start between now() and now() + interval 15 minute and User_ID = ?";
             PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+            ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
 
-            rs.next();
-            String appointmentTitle = rs.getString("Title");
+            if (rs.next() != false) {
+                String appointmentTitle = rs.getString("Title");
+                System.out.println(appointmentTitle);
 
-            return appointmentTitle;
+                return appointmentTitle;
+            } else {
+                return null;
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return null;
