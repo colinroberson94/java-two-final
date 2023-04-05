@@ -59,11 +59,13 @@ public class LoginScreenController implements Initializable {
                 outputLog.close();
 
                 // Check if there are any appointments. If the response is not null, then display a pop up with the name of the appointment.
-                // TODO Need to get this from the user object
                 CurrUser currUser = CurrUser.getCurrUser();
                 String appt = getAppointmentsWithinFifteenMin(currUser.getUserId());
                 if (!(appt == null)) {
-                    Alert alert = new Alert(Alert.AlertType.NONE, appt + " begins within 15 minutes", ButtonType.OK);
+                    Alert alert = new Alert(Alert.AlertType.NONE, appt, ButtonType.OK);
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.NONE, "No upcoming appointments", ButtonType.OK);
                     alert.showAndWait();
                 }
 

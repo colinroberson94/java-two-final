@@ -198,10 +198,10 @@ public abstract class AppointmentQuery {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next() != false) {
-                String appointmentTitle = rs.getString("Title");
-                System.out.println(appointmentTitle);
-
-                return appointmentTitle;
+                Integer appointmentId = rs.getInt("Appointment_ID");
+                LocalDateTime appointmentStart = rs.getTimestamp("Start").toLocalDateTime();
+                String output = "Appointment ID " + appointmentId + " begins at " + appointmentStart;
+                return output;
             } else {
                 return null;
             }
