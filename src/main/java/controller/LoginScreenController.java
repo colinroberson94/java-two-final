@@ -45,6 +45,9 @@ public class LoginScreenController implements Initializable {
     }
 
     public void onActionSubmit(ActionEvent actionEvent) {
+
+        ResourceBundle rb = ResourceBundle.getBundle("language/Nat", Locale.getDefault());
+
         try {
             String username = usernameField.getText();
             String password = passwordField.getText();
@@ -65,7 +68,7 @@ public class LoginScreenController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.NONE, appt, ButtonType.OK);
                     alert.showAndWait();
                 } else {
-                    Alert alert = new Alert(Alert.AlertType.NONE, "No upcoming appointments", ButtonType.OK);
+                    Alert alert = new Alert(Alert.AlertType.NONE, rb.getString("Successful"), ButtonType.OK);
                     alert.showAndWait();
                 }
 
@@ -76,10 +79,10 @@ public class LoginScreenController implements Initializable {
                 throw new Exception();
             }
         } catch (IllegalArgumentException e) {
-            Alert alert = new Alert(Alert.AlertType.NONE, "Username or Password cannot be blank", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.NONE, rb.getString("BlankField"), ButtonType.OK);
             alert.showAndWait();
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.NONE, "Incorrect username or password", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.NONE, rb.getString("Incorrect"), ButtonType.OK);
             alert.showAndWait();
         }
     }
