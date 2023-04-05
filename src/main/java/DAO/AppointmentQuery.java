@@ -3,6 +3,7 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
+import model.CurrUser;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,10 +45,11 @@ public abstract class AppointmentQuery {
         return appointmentsObservableList;
     }
 
-    // TODO add ability to pull in current users name
     public static void addAppointment(String title, String description, String location, String type, LocalDateTime appointmentStart,
                                       LocalDateTime appointmentEnd, Integer userId, Integer customerId, Integer contactId) {
         try {
+            CurrUser currUser = CurrUser.getCurrUser();
+
             String sql = "INSERT INTO appointments VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
             PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
@@ -58,9 +60,9 @@ public abstract class AppointmentQuery {
             ps.setTimestamp(5, Timestamp.valueOf(appointmentStart));
             ps.setTimestamp(6, Timestamp.valueOf(appointmentEnd));
             ps.setTimestamp(7, timestamp);
-            ps.setString(8, "QAM2");
+            ps.setString(8, currUser.getUserName());
             ps.setTimestamp(9, timestamp);
-            ps.setString(10, "QAM2");
+            ps.setString(10, currUser.getUserName());
             ps.setInt(11, customerId);
             ps.setInt(12, userId);
             ps.setInt(13, contactId);
@@ -98,6 +100,8 @@ public abstract class AppointmentQuery {
     public static void updateAppointment(String title, String description, String location, String type, LocalDateTime appointmentStart,
                                          LocalDateTime appointmentEnd, Integer userId, Integer customerId, Integer contactId, Integer appointmentId) {
         try {
+            CurrUser currUser = CurrUser.getCurrUser();
+
             String sql = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Last_Update = ?, Last_Updated_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?";
             Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
             PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
@@ -108,7 +112,7 @@ public abstract class AppointmentQuery {
             ps.setTimestamp(5, Timestamp.valueOf(appointmentStart));
             ps.setTimestamp(6, Timestamp.valueOf(appointmentEnd));
             ps.setTimestamp(7, timestamp);
-            ps.setString(8, "QAM2");
+            ps.setString(8, currUser.getUserName());
             ps.setInt(9, customerId);
             ps.setInt(10, userId);
             ps.setInt(11, contactId);

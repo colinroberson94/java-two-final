@@ -4,10 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import model.Appointments;
-import model.Contacts;
-import model.Customers;
-import model.Users;
+import model.*;
 import roberson.qam2.Main;
 
 import java.net.URL;

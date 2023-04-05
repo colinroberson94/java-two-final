@@ -2,6 +2,7 @@ package DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.CurrUser;
 import model.Customers;
 
 
@@ -42,9 +43,10 @@ public abstract class CustomerQuery {
         return customersObservableList;
     }
 
-    // TODO add ability to pull in current users name
     public static void addCustomer(String name, String address, String postalCode, String phone, Integer divisionId) {
         try {
+            CurrUser currUser = CurrUser.getCurrUser();
+
             String sql = "INSERT INTO customers VALUES (NULL,?,?,?,?,?,?,?,?,?)";
             Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
             PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
@@ -53,9 +55,9 @@ public abstract class CustomerQuery {
             ps.setString(3, postalCode);
             ps.setString(4, phone);
             ps.setTimestamp(5, timestamp);
-            ps.setString(6, "QAM2");
+            ps.setString(6, currUser.getUserName());
             ps.setTimestamp(7, timestamp);
-            ps.setString(8, "QAM2");
+            ps.setString(8, currUser.getUserName());
             ps.setInt(9, divisionId);
 
             ps.execute();
@@ -78,6 +80,8 @@ public abstract class CustomerQuery {
 
     public static void updateCustomer(String name, String address, String postalCode, String phone, Integer divisionId, Integer customerId) {
         try {
+            CurrUser currUser = CurrUser.getCurrUser();
+
             String sql = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Last_Update = ?, Last_Updated_By = ?, Division_ID = ? WHERE Customer_ID = ?";
             Timestamp timestamp = Timestamp.valueOf(LocalDateTime.now());
             PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
@@ -86,7 +90,7 @@ public abstract class CustomerQuery {
             ps.setString(3, postalCode);
             ps.setString(4, phone);
             ps.setTimestamp(5, timestamp);
-            ps.setString(6, "QAM2");
+            ps.setString(6, currUser.getUserName());
             ps.setInt(7, divisionId);
             ps.setInt(8, customerId);
 
