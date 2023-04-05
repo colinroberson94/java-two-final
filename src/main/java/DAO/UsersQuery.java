@@ -42,23 +42,22 @@ public abstract class UsersQuery {
             ps.setString(1, username);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
+// This will only be false if the above query did not return anything. This will only happen if the username/password combo is no good.
+            if (rs.next() != false) {
+                String userName = rs.getString("User_Name");
+                Integer userId = rs.getInt("User_ID");
 
-            rs.next();
-            String userName = rs.getString("User_Name");
-            String pass = rs.getString("Password");
-            Integer userId = rs.getInt("User_ID");
-            if (userName.equals(username)) {
-                if (pass.equals(password)) {
-                    CurrUser currUser = CurrUser.getCurrUser();
-                    currUser.setUserName(userName);
-                    currUser.setUserId(userId);
-                    return true;
-                }
+                CurrUser currUser = CurrUser.getCurrUser();
+                currUser.setUserName(userName);
+                currUser.setUserId(userId);
+                return true;
+            } else {
+                return false;
             }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;
         }
-        return false;
     }
 }
