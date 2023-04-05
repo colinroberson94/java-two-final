@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import model.CurrUser;
 import roberson.qam2.Main;
 
 import java.io.FileWriter;
@@ -59,7 +60,8 @@ public class LoginScreenController implements Initializable {
 
                 // Check if there are any appointments. If the response is not null, then display a pop up with the name of the appointment.
                 // TODO Need to get this from the user object
-                String appt = getAppointmentsWithinFifteenMin(1);
+                CurrUser currUser = CurrUser.getCurrUser();
+                String appt = getAppointmentsWithinFifteenMin(currUser.getUserId());
                 if (!(appt == null)) {
                     Alert alert = new Alert(Alert.AlertType.NONE, appt + " begins within 15 minutes", ButtonType.OK);
                     alert.showAndWait();

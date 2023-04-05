@@ -2,6 +2,7 @@ package DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.CurrUser;
 import model.Users;
 
 import java.sql.PreparedStatement;
@@ -43,8 +44,14 @@ public abstract class UsersQuery {
             ResultSet rs = ps.executeQuery();
 
             rs.next();
-            if (rs.getString("User_Name").equals(username)) {
-                if (rs.getString("Password").equals(password)) {
+            String userName = rs.getString("User_Name");
+            String pass = rs.getString("Password");
+            Integer userId = rs.getInt("User_ID");
+            if (userName.equals(username)) {
+                if (pass.equals(password)) {
+                    CurrUser currUser = CurrUser.getCurrUser();
+                    currUser.setUserName(userName);
+                    currUser.setUserId(userId);
                     return true;
                 }
             }
