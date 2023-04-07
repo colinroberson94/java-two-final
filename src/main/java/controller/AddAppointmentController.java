@@ -104,7 +104,7 @@ public class AddAppointmentController implements Initializable {
                     throw new RuntimeException("This appointment overlaps with other appointments");
                 }
             } else {
-                throw new RuntimeException("This appointment falls outside of business hours. Please input a time between 8:00AM-10:00PM EST");
+                throw new RuntimeException("This appointment falls outside of business hours. Please input a time between Mon-Fri 8:00AM-10:00PM EST");
             }
 
            Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");

@@ -174,6 +174,7 @@ public class Appointments {
                 return true;
             }
         }
+
         return false;
     }
 }
