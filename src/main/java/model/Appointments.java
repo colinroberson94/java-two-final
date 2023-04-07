@@ -3,7 +3,10 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import static DAO.AppointmentQuery.getAllAppointments;
 
@@ -126,6 +129,24 @@ public class Appointments {
         }
 
         return filteredAppointments;
+    }
+
+    public static boolean withinBusinessHours(LocalDateTime start, LocalDateTime end) {
+        ZonedDateTime startInEST = start.atZone(ZoneId.of("EST"));
+        ZonedDateTime endInEST = end.atZone(ZoneId.of("EST"));
+        DayOfWeek startingDayOfWeek = start.getDayOfWeek();
+        DayOfWeek endingDayOfWeek = end.getDayOfWeek();
+
+        if (startingDayOfWeek == DayOfWeek.SATURDAY || startingDayOfWeek == DayOfWeek.SUNDAY ||
+                endingDayOfWeek == DayOfWeek.SATURDAY || endingDayOfWeek == DayOfWeek.SUNDAY) {
+                return false;
+        } else {
+            if (startInEST.getHour() >= 8 && endInEST.getHour() < 10) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
     
 }

@@ -13,7 +13,6 @@ import java.util.ResourceBundle;
 
 import static DAO.CountryQuery.getAllCountries;
 import static DAO.CustomerQuery.addCustomer;
-import static DAO.FirstLevelDivisionQuery.getAllFirstLevelDivisions;
 import static model.FirstLevelDivision.getFirstLevelDivisionOfCountry;
 
 public class AddCustomerController implements Initializable {
