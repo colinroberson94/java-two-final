@@ -149,6 +149,10 @@ public class Appointments {
         System.out.println(startingDayOfWeek);
         System.out.println(endingDayOfWeek);
 
+        if (startingDayOfWeek != endingDayOfWeek) {
+            return false;
+        }
+
         if (startingDayOfWeek == DayOfWeek.SATURDAY || startingDayOfWeek == DayOfWeek.SUNDAY ||
                 endingDayOfWeek == DayOfWeek.SATURDAY || endingDayOfWeek == DayOfWeek.SUNDAY) {
                 return false;
