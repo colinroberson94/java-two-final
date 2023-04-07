@@ -132,16 +132,28 @@ public class Appointments {
     }
 
     public static boolean withinBusinessHours(LocalDateTime start, LocalDateTime end) {
-        ZonedDateTime startInEST = start.atZone(ZoneId.of("EST"));
-        ZonedDateTime endInEST = end.atZone(ZoneId.of("EST"));
+        ZoneId currZone = ZoneId.systemDefault();
+        ZoneId estZone = ZoneId.of("US/Eastern");
+
+        LocalDateTime startInEST = start.atZone(currZone).withZoneSameInstant(estZone).toLocalDateTime();
+        LocalDateTime endInEST = end.atZone(currZone).withZoneSameInstant(estZone).toLocalDateTime();
+
         DayOfWeek startingDayOfWeek = start.getDayOfWeek();
         DayOfWeek endingDayOfWeek = end.getDayOfWeek();
+
+        // TODO remove after testing
+        System.out.println(start);
+        System.out.println(end);
+        System.out.println(startInEST);
+        System.out.println(endInEST);
+        System.out.println(startingDayOfWeek);
+        System.out.println(endingDayOfWeek);
 
         if (startingDayOfWeek == DayOfWeek.SATURDAY || startingDayOfWeek == DayOfWeek.SUNDAY ||
                 endingDayOfWeek == DayOfWeek.SATURDAY || endingDayOfWeek == DayOfWeek.SUNDAY) {
                 return false;
         } else {
-            if (startInEST.getHour() >= 8 && endInEST.getHour() < 10) {
+            if (startInEST.getHour() >= 8 && endInEST.getHour() < 22) {
                 return true;
             } else {
                 return false;

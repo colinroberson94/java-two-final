@@ -14,6 +14,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
+import static DAO.AppointmentQuery.addAppointment;
 import static DAO.AppointmentQuery.updateAppointment;
 import static DAO.ContactsQuery.getAllContacts;
 import static DAO.CustomerQuery.getAllCustomers;
@@ -104,7 +105,11 @@ public class ModifyAppointmentController implements Initializable {
 
             int apptId = appointment.getAppointmentId();
 
-            updateAppointment(title, description, location, type, start, end, userId, customerId, contactId, apptId);
+            if (Appointments.withinBusinessHours(start, end)) {
+                updateAppointment(title, description, location, type, start, end, userId, customerId, contactId, apptId);
+            } else {
+                throw new IllegalArgumentException();
+            }
 
             Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
 
@@ -113,6 +118,9 @@ public class ModifyAppointmentController implements Initializable {
             alert.showAndWait();
         } catch (DateTimeParseException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please input a valid time (HH:MM:SS)", ButtonType.OK);
+            alert.showAndWait();
+        } catch (IllegalArgumentException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "This appointment falls outside of business hours. Please input a time between 8:00AM-10:00PM EST", ButtonType.OK);
             alert.showAndWait();
         } catch (RuntimeException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getLocalizedMessage(), ButtonType.OK);
