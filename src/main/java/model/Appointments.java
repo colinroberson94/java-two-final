@@ -148,5 +148,16 @@ public class Appointments {
             }
         }
     }
-    
+
+    // check if there are any other appointments that overlap with the provided start and end times
+    public static boolean overlapsWithOtherAppointments(LocalDateTime start, LocalDateTime end) {
+
+        for (Appointments appointment : getAllAppointments()) {
+            if (start.isAfter(appointment.getAppointmentStart()) || start.isBefore(appointment.getAppointmentEnd())
+                    || end.isAfter(appointment.getAppointmentStart()) || end.isBefore(appointment.getAppointmentEnd())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
