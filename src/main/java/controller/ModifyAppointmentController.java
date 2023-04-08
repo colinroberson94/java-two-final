@@ -26,9 +26,7 @@ import static model.Users.getUserFromId;
 public class ModifyAppointmentController implements Initializable {
 
     @FXML
-    private Label apptStartDateLabel;
-    @FXML
-    private Label apptEndDateLabel;
+    private Label apptDateLabel;
     @FXML
     private Label apptIdLabel;
     @FXML
@@ -70,9 +68,7 @@ public class ModifyAppointmentController implements Initializable {
     @FXML
     private TextField apptIdTextField;
     @FXML
-    private DatePicker startDatePicker;
-    @FXML
-    private DatePicker endDatePicker;
+    private DatePicker datePicker;
     private static Appointments appointment = null;
     private Contacts contact = getContactFromId(appointment.getContactId());
     private Users user = getUserFromId(appointment.getUserId());
@@ -91,8 +87,8 @@ public class ModifyAppointmentController implements Initializable {
             String description = descrTextField.getText();
             String location = locationTextField.getText();
             String type = typeTextField.getText();
-            LocalDateTime start = startDatePicker.getValue().atTime(LocalTime.parse(startTimeTextField.getText()));
-            LocalDateTime end = endDatePicker.getValue().atTime(LocalTime.parse(endTimeTextField.getText()));
+            LocalDateTime start = datePicker.getValue().atTime(LocalTime.parse(startTimeTextField.getText()));
+            LocalDateTime end = datePicker.getValue().atTime(LocalTime.parse(endTimeTextField.getText()));
 
             Users user = userComboBox.getSelectionModel().getSelectedItem();
             int userId = user.getUserId();

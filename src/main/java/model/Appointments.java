@@ -151,9 +151,6 @@ public class Appointments {
         System.out.println(startingDayOfWeek);
         System.out.println(endingDayOfWeek);
 
-        if (startingDayOfWeek != endingDayOfWeek) {
-            return false;
-        }
 
         if (((startInEST.isAfter(businessStartingHour) && endInEST.isBefore(businessEndingHour))) &&
                 !(startingDayOfWeek == DayOfWeek.SATURDAY || startingDayOfWeek == DayOfWeek.SUNDAY ||
@@ -174,7 +171,6 @@ public class Appointments {
                 return true;
             }
         }
-
         return false;
     }
 }

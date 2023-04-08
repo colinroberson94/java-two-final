@@ -66,8 +66,7 @@
                         <Label fx:id="apptLocationLabel" text="Location" GridPane.rowIndex="3" />
                         <Label fx:id="apptContactLabel" text="Contact" GridPane.rowIndex="4" />
                         <Label fx:id="apptTypeLabel" text="Type" GridPane.rowIndex="5" />
-                  <Label fx:id="apptStartDateLabel" text="Start Date" GridPane.rowIndex="6" />
-                  <Label fx:id="apptEndDateLabel" text="End Date" GridPane.rowIndex="7" />
+                  <Label fx:id="apptDateLabel" text="Date" GridPane.rowIndex="6" />
                   <Label fx:id="apptCustomerIdLabel" text="Customer" GridPane.rowIndex="8" />
                   <Label fx:id="apptUserIdLabel" text="User" GridPane.rowIndex="9" />
                         <TextField fx:id="apptIdTextField" disable="true" editable="false" promptText="Auto Gen - Disabled" GridPane.columnIndex="1">
@@ -80,14 +79,13 @@
                         <TextField fx:id="locationTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <ComboBox fx:id="contactComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <TextField fx:id="typeTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <DatePicker fx:id="startDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <DatePicker fx:id="endDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <ComboBox fx:id="customerComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <ComboBox fx:id="userComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <Label fx:id="apptStartTimeLabel" text="Start Time" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                  <Label fx:id="apptStartTimeLabel" text="Start Time" GridPane.rowIndex="7" />
                         <Label fx:id="apptEndTimeLabel" text="End Time" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-                  <TextField fx:id="startTimeTextField" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                  <TextField fx:id="endTimeTextField" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                  <TextField fx:id="startTimeTextField" promptText="HH:MM" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="endTimeTextField" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="7" />
                         <Button mnemonicParsing="false" onAction="#onActionSave" text="Save" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
                         <Button mnemonicParsing="false" onAction="#onActionCancel" text="Cancel" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
                     </children>
