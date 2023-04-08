@@ -24,61 +24,175 @@ import static model.Users.getUserFromId;
 
 public class ModifyAppointmentController implements Initializable {
 
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private Label apptDateLabel;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private Label apptIdLabel;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private Label apptTitleLabel;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private Label apptDescrLabel;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private Label apptLocationLabel;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private Label apptContactLabel;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private Label apptTypeLabel;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private Label apptEndTimeLabel;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private Label apptStartTimeLabel;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private Label apptCustomerIdLabel;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private Label apptUserIdLabel;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private TextField titleTextField;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private TextField descrTextField;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private TextField locationTextField;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private TextField typeTextField;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private TextField endTimeTextField;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private TextField startTimeTextField;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private ComboBox<Contacts> contactComboBox;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private ComboBox<Customers> customerComboBox;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private ComboBox<Users> userComboBox;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private TextField apptIdTextField;
+
+    /**
+     * Element of the Modify Appointment GUI
+     */
     @FXML
     private DatePicker datePicker;
+
+    /**
+     * Appointments object reference used for passing an object from the Appointment Controller to the Modify Appointment Controller.
+     */
     private static Appointments appointment = null;
+
+    /**
+     * Contacts object reference used for populating a pre-selected object in the contactComboBox.
+     */
     private Contacts contact = getContactFromId(appointment.getContactId());
+
+    /**
+     * Users object reference used for populating a pre-selected object in the userComboBox.
+     */
     private Users user = getUserFromId(appointment.getUserId());
+
+    /**
+     * Customers object reference used for populating a pre-selected object in the customerComboBox.
+     */
     private Customers customer = getCustomerFromId(appointment.getCustomerId());
 
+    /**
+     * Cancel the current operation and return to the appointment controller.
+     *
+     * @param actionEvent Cancel button action
+     */
     @FXML
-    void onActionCancel(ActionEvent event) {
+    void onActionCancel(ActionEvent actionEvent) {
         appointment = null;
-        Main.switchStage(event, "/roberson/qam2/appointment-screen.fxml");
+        Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
     }
 
+    /**
+     * Modifies an existing appointment with the values that have been input into the form.
+     * Will throw an error for invalid inputs and display a corresponding dialog window.
+     *
+     * @param actionEvent Save button action
+     */
     @FXML
     void onActionSave(ActionEvent actionEvent) {
         try {
@@ -123,10 +237,21 @@ public class ModifyAppointmentController implements Initializable {
         }
     }
 
+    /**
+     * Static method that allows the appointment controller to pass a selected appointment object to the modify appointment controller.
+     *
+     * @param appointment The InHouse Part that is to be modified
+     */
     public static void passAppointment(Appointments appointment) {
         ModifyAppointmentController.appointment = appointment;
     }
 
+    /**
+     * Initializes controller and populates the fields with the values of the selected Appointment.
+     *
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         apptIdTextField.setText(String.valueOf(appointment.getAppointmentId()));

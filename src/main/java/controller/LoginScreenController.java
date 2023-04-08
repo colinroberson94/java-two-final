@@ -19,12 +19,38 @@ import static DAO.AppointmentQuery.getAppointmentsWithinFifteenMin;
 import static DAO.UsersQuery.verifyUser;
 
 public class LoginScreenController implements Initializable {
+
+    /**
+     * Element of the login GUI
+     */
     public Label userLocation;
+
+    /**
+     * Element of the login GUI
+     */
     public TextField usernameField;
+
+    /**
+     * Element of the login GUI
+     */
     public PasswordField passwordField;
+
+    /**
+     * Element of the login GUI
+     */
     public Button submitLoginButton;
+
+    /**
+     * Element of the login GUI
+     */
     public Button cancelLoginButton;
 
+    /**
+     * Initializes controller.
+     *
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
             ZoneId zone = ZoneId.systemDefault();
@@ -39,10 +65,22 @@ public class LoginScreenController implements Initializable {
             }
     }
 
+    /**
+     * When the Cancel button is clicked, exit the application.
+     *
+     * @param actionEvent Exit button action
+     */
     public void onActionCancel(ActionEvent actionEvent) {
         System.exit(0);
     }
 
+    /**
+     * When the Submit button is clicked, log the login attempt and verify if the credentials are correct.
+     * If credentials are invalid or fields are empty, throw an exception.
+     * Displays a notification if there are any appointments within 15 minutes of login.
+     *
+     * @param actionEvent Exit button action
+     */
     public void onActionSubmit(ActionEvent actionEvent) {
 
         ResourceBundle rb = ResourceBundle.getBundle("language/Nat", Locale.getDefault());

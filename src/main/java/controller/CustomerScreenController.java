@@ -21,48 +21,110 @@ import static roberson.qam2.Main.switchStage;
 
 public class CustomerScreenController implements Initializable {
 
+    /**
+     * Element of the Customer GUI
+     */
     @FXML
     private  TableColumn<Customers, Integer> CustomerIdCol;
+
+    /**
+     * Element of the Customer GUI
+     */
     @FXML
     private  TableColumn<Customers, String> CustomerNameCol;
+
+    /**
+     * Element of the Customer GUI
+     */
     @FXML
     private  TableColumn<Customers, String> CustomerAddrCol;
+
+    /**
+     * Element of the Customer GUI
+     */
     @FXML
     private  TableColumn<Customers, String> CustomerFirstLevelDivisionCol;
+
+    /**
+     * Element of the Customer GUI
+     */
     @FXML
     private  TableColumn<Customers, String> CustomerCountryCol;
+
+    /**
+     * Element of the Customer GUI
+     */
     @FXML
     private  TableColumn<Customers, String> CustomerPostalCodeCol;
+
+    /**
+     * Element of the Customer GUI
+     */
     @FXML
     private  TableColumn<Customers, String> CustomerPhoneNumberCol;
+
+    /**
+     * Element of the Customer GUI
+     */
     @FXML
     private  TableView<Customers> CustomerTable;
 
+    /**
+     * When the Exit button is clicked, exit the application.
+     *
+     * @param actionEvent Exit button action
+     */
     @FXML
     void OnActionExit(ActionEvent actionEvent) {
         System.exit(0);
     }
 
+    /**
+     * When the Appointments button is selected, switch to the Appointments screen.
+     *
+     * @param actionEvent Add part button action
+     */
     @FXML
     void OnActionAppointments(ActionEvent actionEvent) {
         switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
     }
 
+    /**
+     * When the Reports button is selected, switch to the Reports screen.
+     *
+     * @param actionEvent Add part button action
+     */
     @FXML
     void OnActionReports(ActionEvent actionEvent) {
         switchStage(actionEvent, "/roberson/qam2/reports-screen.fxml");
     }
 
+    /**
+     * When the Customers button is selected, switch to the Customers screen.
+     *
+     * @param actionEvent Add part button action
+     */
     @FXML
     void OnActionCustomers(ActionEvent actionEvent) {
         switchStage(actionEvent, "/roberson/qam2/customer-screen.fxml");
     }
 
+    /**
+     * When the Add Customer button is selected, switch to the Add Customer scene.
+     *
+     * @param actionEvent Add Customer button action
+     */
     @FXML
     void OnActionAdd(ActionEvent actionEvent) {
         switchStage(actionEvent, "/roberson/qam2/add-customer-screen.fxml");
     }
 
+    /**
+     * Take the selected customer and pass it to the modify customer form.
+     * If no customer is selected, throw an exception.
+     *
+     * @param actionEvent Modify customer button action
+     */
     @FXML
     void OnActionUpdate(ActionEvent actionEvent) {
         try {
@@ -81,6 +143,12 @@ public class CustomerScreenController implements Initializable {
         }
     }
 
+    /**
+     * Delete the selected customer. If no customer is selected, throw an exception.
+     * Also deletes all of this customer's appointments.
+     *
+     * @param actionEvent Delete appointment button action
+     */
     @FXML
     void OnActionDelete(ActionEvent actionEvent) {
         try {
@@ -104,6 +172,12 @@ public class CustomerScreenController implements Initializable {
 
     }
 
+    /**
+     * Initializes controller.
+     *
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<Customers> allCustomers = getAllCustomers();

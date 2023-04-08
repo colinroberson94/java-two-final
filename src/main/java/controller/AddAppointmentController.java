@@ -21,57 +21,162 @@ import static DAO.ContactsQuery.getAllContacts;
 import static DAO.CustomerQuery.getAllCustomers;
 import static DAO.UsersQuery.getAllUsers;
 
+/**
+ * Controller class that provides logic for the Add Appointment Form of the application.
+ *
+ * @author Colin Roberson
+ */
+
 public class AddAppointmentController implements Initializable {
 
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private Label apptDateLabel;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private Label apptIdLabel;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private Label apptTitleLabel;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private Label apptDescrLabel;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private Label apptLocationLabel;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private Label apptContactLabel;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private Label apptTypeLabel;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private Label apptEndTimeLabel;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private Label apptStartTimeLabel;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private Label apptCustomerIdLabel;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private Label apptUserIdLabel;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private TextField titleTextField;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private TextField descrTextField;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private TextField locationTextField;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private TextField typeTextField;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private TextField endTimeTextField;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private TextField startTimeTextField;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private ComboBox<Contacts> contactComboBox;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private ComboBox<Customers> customerComboBox;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private ComboBox<Users> userComboBox;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private TextField apptIdTextField;
+
+    /**
+     * Element of the Add Appointment GUI
+     */
     @FXML
     private DatePicker datePicker;
 
+    /**
+     * Cancel the current operation and return to the appointment controller.
+     *
+     * @param actionEvent Cancel button action
+     */
     @FXML
-    void onActionCancel(ActionEvent event) {
-        Main.switchStage(event, "/roberson/qam2/appointment-screen.fxml");
+    void onActionCancel(ActionEvent actionEvent) {
+        Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
     }
+
+    /**
+     * Creates a new appointment with the values that have been input into the form.
+     * Will throw an error for invalid inputs and display a corresponding dialog window.
+     *
+     * @param actionEvent Save button action
+     */
     @FXML
     void onActionSave(ActionEvent actionEvent) {
         try {
@@ -117,6 +222,13 @@ public class AddAppointmentController implements Initializable {
             alert.showAndWait();
         }
     }
+
+    /**
+     * Initializes controller.
+     *
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactComboBox.setItems(getAllContacts());
