@@ -132,32 +132,21 @@ public class Appointments {
         ZoneId currZone = ZoneId.systemDefault();
         ZoneId estZone = ZoneId.of("US/Eastern");
 
-        LocalTime startInEST = start.atZone(currZone).withZoneSameInstant(estZone).toLocalTime();
-        LocalTime endInEST = end.atZone(currZone).withZoneSameInstant(estZone).toLocalTime();
+        LocalDateTime startInEST = start.atZone(currZone).withZoneSameInstant(estZone).toLocalDateTime();
+        LocalDateTime endInEST = end.atZone(currZone).withZoneSameInstant(estZone).toLocalDateTime();
 
-        DayOfWeek startingDayOfWeek = start.getDayOfWeek();
-        DayOfWeek endingDayOfWeek = end.getDayOfWeek();
+        DayOfWeek startingDayOfWeek = startInEST.getDayOfWeek();
+        DayOfWeek endingDayOfWeek = endInEST.getDayOfWeek();
 
         LocalTime businessStartingHour = LocalTime.of(7,59,59);
         LocalTime businessEndingHour = LocalTime.of(22, 0, 1);
 
-        // TODO remove after testing
-        System.out.println(start);
-        System.out.println(end);
-        System.out.println(startInEST);
-        System.out.println(endInEST);
-        System.out.println(businessStartingHour);
-        System.out.println(businessEndingHour);
-        System.out.println(startingDayOfWeek);
-        System.out.println(endingDayOfWeek);
-
-
-        if (((startInEST.isAfter(businessStartingHour) && endInEST.isBefore(businessEndingHour))) &&
+        if ((startInEST.toLocalTime().isAfter(businessStartingHour) && endInEST.toLocalTime().isBefore(businessEndingHour)) &&
+                (endingDayOfWeek == startingDayOfWeek) &&
                 !(startingDayOfWeek == DayOfWeek.SATURDAY || startingDayOfWeek == DayOfWeek.SUNDAY ||
-                endingDayOfWeek == DayOfWeek.SATURDAY || endingDayOfWeek == DayOfWeek.SUNDAY)) {
-                return true;
+                        endingDayOfWeek == DayOfWeek.SATURDAY || endingDayOfWeek == DayOfWeek.SUNDAY)) {
+            return true;
         } else {
-
             return false;
         }
     }

@@ -145,8 +145,8 @@ public class ModifyAppointmentController implements Initializable {
         LocalTime apptStartTime = appointment.getAppointmentStart().toLocalTime();
         LocalTime apptEndTime = appointment.getAppointmentEnd().toLocalTime();
 
-        startDatePicker.setValue(apptStartDate);
-        endDatePicker.setValue(apptEndDate);
+        datePicker.setValue(apptStartDate);
+        datePicker.setValue(apptEndDate);
         endTimeTextField.setText(apptEndTime.toString());
         startTimeTextField.setText(apptStartTime.toString());
 
