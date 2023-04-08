@@ -3,10 +3,7 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 
 import static DAO.AppointmentQuery.getAllAppointments;
 
@@ -135,17 +132,22 @@ public class Appointments {
         ZoneId currZone = ZoneId.systemDefault();
         ZoneId estZone = ZoneId.of("US/Eastern");
 
-        LocalDateTime startInEST = start.atZone(currZone).withZoneSameInstant(estZone).toLocalDateTime();
-        LocalDateTime endInEST = end.atZone(currZone).withZoneSameInstant(estZone).toLocalDateTime();
+        LocalTime startInEST = start.atZone(currZone).withZoneSameInstant(estZone).toLocalTime();
+        LocalTime endInEST = end.atZone(currZone).withZoneSameInstant(estZone).toLocalTime();
 
         DayOfWeek startingDayOfWeek = start.getDayOfWeek();
         DayOfWeek endingDayOfWeek = end.getDayOfWeek();
+
+        LocalTime businessStartingHour = LocalTime.of(7,59,59);
+        LocalTime businessEndingHour = LocalTime.of(22, 0, 1);
 
         // TODO remove after testing
         System.out.println(start);
         System.out.println(end);
         System.out.println(startInEST);
         System.out.println(endInEST);
+        System.out.println(businessStartingHour);
+        System.out.println(businessEndingHour);
         System.out.println(startingDayOfWeek);
         System.out.println(endingDayOfWeek);
 
@@ -153,15 +155,12 @@ public class Appointments {
             return false;
         }
 
-        if (startingDayOfWeek == DayOfWeek.SATURDAY || startingDayOfWeek == DayOfWeek.SUNDAY ||
-                endingDayOfWeek == DayOfWeek.SATURDAY || endingDayOfWeek == DayOfWeek.SUNDAY) {
-                return false;
-        } else {
-            if (startInEST.getHour() >= 8 && endInEST.getHour() < 22) {
+        if (((startInEST.isAfter(businessStartingHour) && endInEST.isBefore(businessEndingHour))) &&
+                !(startingDayOfWeek == DayOfWeek.SATURDAY || startingDayOfWeek == DayOfWeek.SUNDAY ||
+                endingDayOfWeek == DayOfWeek.SATURDAY || endingDayOfWeek == DayOfWeek.SUNDAY)) {
                 return true;
-            } else {
-                return false;
-            }
+        } else {
+            return false;
         }
     }
 
