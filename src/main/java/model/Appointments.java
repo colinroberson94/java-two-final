@@ -160,6 +160,7 @@ public class Appointments {
                 endingDayOfWeek == DayOfWeek.SATURDAY || endingDayOfWeek == DayOfWeek.SUNDAY)) {
                 return true;
         } else {
+
             return false;
         }
     }
