@@ -15,6 +15,12 @@ import static DAO.CountryQuery.getAllCountries;
 import static DAO.CustomerQuery.addCustomer;
 import static model.FirstLevelDivision.getFirstLevelDivisionOfCountry;
 
+/**
+ * Controller class that provides logic for the Add Customer Form of the application.
+ *
+ * @author Colin Roberson
+ */
+
 public class AddCustomerController implements Initializable {
 
     /**

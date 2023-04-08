@@ -22,6 +22,12 @@ import static model.Contacts.getContactFromId;
 import static model.Customers.getCustomerFromId;
 import static model.Users.getUserFromId;
 
+/**
+ * Controller class that provides logic for the modify Appointment Form of the application.
+ *
+ * @author Colin Roberson
+ */
+
 public class ModifyAppointmentController implements Initializable {
 
     /**

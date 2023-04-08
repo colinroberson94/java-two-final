@@ -18,6 +18,12 @@ import java.util.ResourceBundle;
 import static DAO.AppointmentQuery.getAppointmentsWithinFifteenMin;
 import static DAO.UsersQuery.verifyUser;
 
+/**
+ * Controller class that provides logic for the login Form of the application.
+ *
+ * @author Colin Roberson
+ */
+
 public class LoginScreenController implements Initializable {
 
     /**

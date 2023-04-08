@@ -10,6 +10,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class UsersQuery {
+
+    /**
+     * Get all users from the database, create corresponding objects, add them to an observable list, and then return this list.
+     *
+     * @return ObservableList containing all users in the database
+     */
     public static ObservableList<Users> getAllUsers() {
         ObservableList<Users> usersObservableList = FXCollections.observableArrayList();
 
@@ -35,6 +41,13 @@ public abstract class UsersQuery {
         return usersObservableList;
     }
 
+    /**
+     * Check whether a username/password combo exists within the database.
+     *
+     * @param username username which is being verified
+     * @param password password which is being verified
+     * @return true if username and password match an entry in the database, otherwise return false
+     */
     public static boolean verifyUser(String username, String password) {
         try {
             String sql = "SELECT * FROM USERS WHERE User_Name = ? AND Password = ?";
@@ -42,7 +55,7 @@ public abstract class UsersQuery {
             ps.setString(1, username);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
-// This will only be false if the above query did not return anything. This will only happen if the username/password combo is no good.
+            // This will only be false if the above query did not return anything. This will only happen if the username/password combo is no good.
             if (rs.next() != false) {
                 String userName = rs.getString("User_Name");
                 Integer userId = rs.getInt("User_ID");

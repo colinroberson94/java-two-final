@@ -13,6 +13,12 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public abstract class CustomerQuery {
+
+    /**
+     * Get all customers from the database, create corresponding objects, add them to an observable list, and then return this list.
+     *
+     * @return ObservableList containing all customers in the database
+     */
     public static ObservableList<Customers> getAllCustomers() {
         ObservableList<Customers> customersObservableList = FXCollections.observableArrayList();
 
@@ -43,6 +49,15 @@ public abstract class CustomerQuery {
         return customersObservableList;
     }
 
+    /**
+     * Add new customer to the database.
+     *
+     * @param name name of the customer being added
+     * @param address address of the customer being added
+     * @param postalCode postal code of the customer being added
+     * @param phone phone number of the customer being added
+     * @param divisionId First level Division of the customer
+     */
     public static void addCustomer(String name, String address, String postalCode, String phone, Integer divisionId) {
         try {
             CurrUser currUser = CurrUser.getCurrUser();
@@ -66,6 +81,11 @@ public abstract class CustomerQuery {
         }
     }
 
+    /**
+     * Delete an existing customer from the database based on the supplied Customer ID
+     *
+     * @param customerId customer ID of the customer that is to be updated
+     */
     public static void deleteCustomer(Integer customerId) {
         try {
             String sql = "DELETE FROM customers WHERE Customer_ID = ?";
@@ -78,6 +98,16 @@ public abstract class CustomerQuery {
         }
     }
 
+    /**
+     * Update an existing customer in the database.
+     *
+     * @param name name of the customer being added
+     * @param address address of the customer being added
+     * @param postalCode postal code of the customer being added
+     * @param phone phone number of the customer being added
+     * @param divisionId First level Division of the customer
+     * @param customerId customer ID of the customer that is to be updated
+     */
     public static void updateCustomer(String name, String address, String postalCode, String phone, Integer divisionId, Integer customerId) {
         try {
             CurrUser currUser = CurrUser.getCurrUser();

@@ -16,6 +16,12 @@ import static DAO.AppointmentQuery.*;
 import static controller.ModifyAppointmentController.passAppointment;
 import static roberson.qam2.Main.switchStage;
 
+/**
+ * Controller class that provides logic for the main Appointment Form of the application.
+ *
+ * @author Colin Roberson
+ */
+
 public class AppointmentScreenController implements Initializable {
 
     /**

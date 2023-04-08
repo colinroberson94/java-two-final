@@ -9,6 +9,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class FirstLevelDivisionQuery {
+
+    /**
+     * Get all First Level Divisions from the database, create corresponding objects, add them to an observable list, and then return this list.
+     *
+     * @return ObservableList containing all First Level Divisions in the database
+     */
     public static ObservableList<FirstLevelDivision> getAllFirstLevelDivisions() {
         ObservableList<FirstLevelDivision> firstLevelDivisionObservableList = FXCollections.observableArrayList();
 

@@ -9,6 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class ReportsQuery {
+
+    /**
+     * Get total appointments by type and month from the database, create objects from these records,
+     * add them to an observable list, and then return this list.
+     *
+     * @return ObservableList containing total appointments by type and month.
+     */
     public static ObservableList<Reports> getTotalAppointmentsByTypeAndMonth() {
         ObservableList<Reports> appointmentsByTypeAndMonth = FXCollections.observableArrayList();
 
@@ -34,6 +41,12 @@ public abstract class ReportsQuery {
         return appointmentsByTypeAndMonth;
     }
 
+    /**
+     * Get total appointments by customer from the database, create objects from these records,
+     * add them to an observable list, and then return this list.
+     *
+     * @return ObservableList containing total appointments by customer.
+     */
     public static ObservableList<Reports> getTotalAppointmentsByCustomer() {
         ObservableList<Reports> appointmentsByCustomer = FXCollections.observableArrayList();
 

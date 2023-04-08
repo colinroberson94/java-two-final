@@ -19,6 +19,12 @@ import static DAO.FirstLevelDivisionQuery.getAllFirstLevelDivisions;
 import static controller.ModifyCustomerController.passCustomer;
 import static roberson.qam2.Main.switchStage;
 
+/**
+ * Controller class that provides logic for the main Customers Form of the application.
+ *
+ * @author Colin Roberson
+ */
+
 public class CustomerScreenController implements Initializable {
 
     /**

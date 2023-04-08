@@ -12,6 +12,12 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public abstract class AppointmentQuery {
+
+    /**
+     * Get all appointments from the database, create corresponding objects, add them to an observable list, and then return this list.
+     *
+     * @return ObservableList containing all appointments in the database
+     */
     public static ObservableList<Appointments> getAllAppointments() {
         ObservableList<Appointments> appointmentsObservableList = FXCollections.observableArrayList();
 
@@ -45,6 +51,19 @@ public abstract class AppointmentQuery {
         return appointmentsObservableList;
     }
 
+    /**
+     * Add new appointment to the database.
+     *
+     * @param title title of the appointment being added
+     * @param description description of the appointment being added
+     * @param location location of the appointment being added
+     * @param type type of appointment being added
+     * @param appointmentStart timestamp of the appointment start time
+     * @param appointmentEnd timestamp of the appointment end time
+     * @param userId user ID of the appointment being added
+     * @param customerId customer ID of the appointment being added
+     * @param contactId contact ID of the appointment being added
+     */
     public static void addAppointment(String title, String description, String location, String type, LocalDateTime appointmentStart,
                                       LocalDateTime appointmentEnd, Integer userId, Integer customerId, Integer contactId) {
         try {
@@ -73,6 +92,11 @@ public abstract class AppointmentQuery {
         }
     }
 
+    /**
+     * Delete an existing appointment from the database based on the supplied Appointment ID
+     *
+     * @param appointmentId appointment ID of the appointment that is to be updated
+     */
     public static void deleteAppointment(Integer appointmentId) {
         try {
             String sql = "DELETE FROM appointments WHERE Appointment_ID = ?";
@@ -85,6 +109,11 @@ public abstract class AppointmentQuery {
         }
     }
 
+    /**
+     * Delete an existing appointment from the database based on the supplied Customer ID
+     *
+     * @param customerId appointment ID of the appointment that is to be updated
+     */
     public static void deleteCustomerAppointments(Integer customerId) {
         try {
             String sql = "DELETE FROM appointments WHERE Customer_ID = ?";
@@ -97,6 +126,20 @@ public abstract class AppointmentQuery {
         }
     }
 
+    /**
+     * Update an existing appointment in the database.
+     *
+     * @param title title of the appointment being updated
+     * @param description description of the appointment being updated
+     * @param location location of the appointment being updated
+     * @param type type of appointment being updated
+     * @param appointmentStart timestamp of the appointment start time
+     * @param appointmentEnd timestamp of the appointment end time
+     * @param userId user ID of the appointment being updated
+     * @param customerId customer ID of the appointment being updated
+     * @param contactId contact ID of the appointment being updated
+     * @param appointmentId appointment ID of the appointment that is to be updated
+     */
     public static void updateAppointment(String title, String description, String location, String type, LocalDateTime appointmentStart,
                                          LocalDateTime appointmentEnd, Integer userId, Integer customerId, Integer contactId, Integer appointmentId) {
         try {
@@ -124,6 +167,11 @@ public abstract class AppointmentQuery {
         }
     }
 
+    /**
+     * Get appointments for the current week from the database, create corresponding objects, add them to an observable list, and then return this list.
+     *
+     * @return ObservableList containing the current week's appointments
+     */
     public static ObservableList<Appointments> getWeeklyAppointments() {
         ObservableList<Appointments> weeklyAppointmentsObservableList = FXCollections.observableArrayList();
 
@@ -157,6 +205,11 @@ public abstract class AppointmentQuery {
         return weeklyAppointmentsObservableList;
     }
 
+    /**
+     * Get appointments for the current month from the database, create corresponding objects, add them to an observable list, and then return this list.
+     *
+     * @return ObservableList containing the current month's appointments
+     */
     public static ObservableList<Appointments> getMonthlyAppointments() {
         ObservableList<Appointments> weeklyAppointmentsObservableList = FXCollections.observableArrayList();
 
@@ -190,6 +243,12 @@ public abstract class AppointmentQuery {
         return weeklyAppointmentsObservableList;
     }
 
+    /**
+     * Get any appointments that are within the next fifteen minutes from the database based on the supplied User ID
+     *
+     * @param userId User ID of the user whose appointments are being retrieved
+     * @return String containing appointment ID and appointment Start time
+     */
     public static String getAppointmentsWithinFifteenMin(Integer userId) {
         try {
             String sql = "SELECT * FROM appointments WHERE start between now() and now() + interval 15 minute and User_ID = ?";

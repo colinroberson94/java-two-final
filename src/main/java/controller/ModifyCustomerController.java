@@ -18,6 +18,12 @@ import static model.Countries.getCountryFromName;
 import static model.FirstLevelDivision.getFirstLevelDivisionFromName;
 import static model.FirstLevelDivision.getFirstLevelDivisionOfCountry;
 
+/**
+ * Controller class that provides logic for the modify customer Form of the application.
+ *
+ * @author Colin Roberson
+ */
+
 public class ModifyCustomerController implements Initializable {
 
     /**

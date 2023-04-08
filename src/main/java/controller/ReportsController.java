@@ -19,6 +19,12 @@ import static DAO.ReportsQuery.getTotalAppointmentsByTypeAndMonth;
 import static model.Appointments.getAppointmentsListByContact;
 import static roberson.qam2.Main.switchStage;
 
+/**
+ * Controller class that provides logic for the reports form of the application.
+ *
+ * @author Colin Roberson
+ */
+
 public class ReportsController implements Initializable {
 
     /**

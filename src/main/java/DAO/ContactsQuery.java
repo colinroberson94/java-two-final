@@ -9,6 +9,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class ContactsQuery {
+
+    /**
+     * Get all contacts from the database, create corresponding objects, add them to an observable list, and then return this list.
+     *
+     * @return ObservableList containing all contacts in the database
+     */
     public static ObservableList<Contacts> getAllContacts() {
         ObservableList<Contacts> contactsObservableList = FXCollections.observableArrayList();
 
