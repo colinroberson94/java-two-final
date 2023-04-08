@@ -3,9 +3,6 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.stream.Collectors;
-
-import static DAO.CountryQuery.getAllCountries;
 import static DAO.FirstLevelDivisionQuery.getAllFirstLevelDivisions;
 
 public class FirstLevelDivision {

@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
 import static DAO.AppointmentQuery.getAppointmentsWithinFifteenMin;
 import static DAO.UsersQuery.verifyUser;

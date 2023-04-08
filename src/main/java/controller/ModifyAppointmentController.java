@@ -14,7 +14,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
-import static DAO.AppointmentQuery.addAppointment;
 import static DAO.AppointmentQuery.updateAppointment;
 import static DAO.ContactsQuery.getAllContacts;
 import static DAO.CustomerQuery.getAllCustomers;

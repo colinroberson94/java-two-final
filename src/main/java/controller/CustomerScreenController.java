@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Customers;
 import model.FirstLevelDivision;
-import roberson.qam2.Main;
 
 import java.net.URL;
 import java.util.ResourceBundle;
