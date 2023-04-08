@@ -141,14 +141,8 @@ public class Appointments {
         LocalTime businessStartingHour = LocalTime.of(7,59,59);
         LocalTime businessEndingHour = LocalTime.of(22, 0, 1);
 
-        if ((startInEST.toLocalTime().isAfter(businessStartingHour) && endInEST.toLocalTime().isBefore(businessEndingHour)) &&
-                (endingDayOfWeek == startingDayOfWeek) &&
-                !(startingDayOfWeek == DayOfWeek.SATURDAY || startingDayOfWeek == DayOfWeek.SUNDAY ||
-                        endingDayOfWeek == DayOfWeek.SATURDAY || endingDayOfWeek == DayOfWeek.SUNDAY)) {
-            return true;
-        } else {
-            return false;
-        }
+        return (startInEST.toLocalTime().isAfter(businessStartingHour) && endInEST.toLocalTime().isBefore(businessEndingHour)) &&
+                (endingDayOfWeek == startingDayOfWeek) && !(startingDayOfWeek == DayOfWeek.SATURDAY || startingDayOfWeek == DayOfWeek.SUNDAY);
     }
 
     // check if there are any other appointments that overlap with the provided start and end times

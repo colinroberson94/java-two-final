@@ -72,7 +72,7 @@ public class LoginScreenController implements Initializable {
                     alert.showAndWait();
                 }
 
-                Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml");
+                Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml", 50, 50);
             } else {
                 outputLog.println(Timestamp.valueOf(LocalDateTime.now()) + ": " + username + " FAILED to log in.");
                 outputLog.close();

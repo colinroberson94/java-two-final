@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("login-screen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 400, 250);
-        stage.setTitle("Login");
+        stage.setTitle("Appointment Scheduling");
         stage.setScene(scene);
         stage.show();
     }
@@ -26,6 +26,21 @@ public class Main extends Application {
             Parent scene;
             Stage stage;
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(Main.class.getResource(fxmlPath));
+            stage.setScene(new Scene(scene));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void switchStage(ActionEvent event, String fxmlPath, double x, double y) {
+        try {
+            Parent scene;
+            Stage stage;
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage.setX(x);
+            stage.setY(y);
             scene = FXMLLoader.load(Main.class.getResource(fxmlPath));
             stage.setScene(new Scene(scene));
             stage.show();
