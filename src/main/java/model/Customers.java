@@ -238,6 +238,9 @@ public class Customers {
     /**
      * Take in a customer ID and return a corresponding customer object
      *
+     * A lambda is chosen here instead of a loop as the findFirst method will find the first occurrence and then stop.
+     * This prevents the need to loop through all customer objects in the ObservableList.
+     *
      * @param id customer ID to search for
      * @return the customer object which corresponds with the provided ID
      */

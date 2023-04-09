@@ -112,6 +112,9 @@ public class Contacts {
      * Get the contact object which contains a specific ID
      * Takes in a contact ID, filters out the first contact that matches this ID and returns it.
      *
+     * A lambda is chosen here as the use of the findFirst method will find the first occurrence and then stop.
+     * Prevents the need to loop through all contact objects in the ObservableList.
+     *
      * @param id the ID of the contact which will be returned
      * @return Contact which matches the provided ID
      */

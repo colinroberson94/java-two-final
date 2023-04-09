@@ -107,13 +107,13 @@ public class LoginScreenController implements Initializable {
                 // Check if there are any appointments. If the response is not null, then display a pop up with the name of the appointment.
                 CurrUser currUser = CurrUser.getCurrUser();
                 String appt = getAppointmentsWithinFifteenMin(currUser.getUserId());
+                Alert alert;
                 if (!(appt == null)) {
-                    Alert alert = new Alert(Alert.AlertType.NONE, appt, ButtonType.OK);
-                    alert.showAndWait();
+                    alert = new Alert(Alert.AlertType.NONE, appt, ButtonType.OK);
                 } else {
-                    Alert alert = new Alert(Alert.AlertType.NONE, rb.getString("Successful"), ButtonType.OK);
-                    alert.showAndWait();
+                    alert = new Alert(Alert.AlertType.NONE, rb.getString("Successful"), ButtonType.OK);
                 }
+                alert.showAndWait();
 
                 Main.switchStage(actionEvent, "/roberson/qam2/appointment-screen.fxml", 50, 50);
             } else {

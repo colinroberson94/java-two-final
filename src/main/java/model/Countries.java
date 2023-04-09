@@ -88,6 +88,9 @@ public class Countries {
      * Get Country object from Country name
      * Takes in a country name, filters out the first country that matches this name and returns it.
      *
+     * A lambda is chosen here as the use of the findFirst method will find the first occurrence and then stop.
+     * This prevents the need to loop through all country objects in the ObservableList.
+     *
      * @param name The name to search for.
      * @return The first country object that matches the name parameter
      */

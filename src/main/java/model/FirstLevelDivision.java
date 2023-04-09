@@ -86,6 +86,8 @@ public class FirstLevelDivision {
      * Get list of first level divisions with a specific country ID
      * Takes in a country ID, filters out First Level Divisions that match this ID, adds these to a list, and then returns this list
      *
+     * A Lambda was chosen here as it decreased the lines of code needed to perform the same task.
+     *
      * @param countryId Country ID to search for
      * @return Observable List containing first level divisions with a specific country ID
      */
@@ -104,6 +106,9 @@ public class FirstLevelDivision {
     /**
      * Get first level division object by name.
      * Takes in a first level division name and then returns a corresponding object.
+     *
+     * A lambda is chosen here instead of a loop as the findFirst method will find the first occurrence and then stop.
+     * This prevents the need to loop through all FirstLevelDivision objects in the ObservableList. If nothing is found, null is returned.
      *
      * @param name first level division to search for
      * @return First level division object that corresponds with the parameter.

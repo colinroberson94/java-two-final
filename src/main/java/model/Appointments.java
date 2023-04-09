@@ -305,18 +305,24 @@ public class Appointments {
      * @return true if the appointment is within business hours, otherwise return false.
      */
     public static boolean withinBusinessHours(LocalDateTime start, LocalDateTime end) {
+        // ZoneId will be used to convert the provided times into EST
         ZoneId currZone = ZoneId.systemDefault();
         ZoneId estZone = ZoneId.of("US/Eastern");
 
+        // Convert provided times into EST
         LocalDateTime startInEST = start.atZone(currZone).withZoneSameInstant(estZone).toLocalDateTime();
         LocalDateTime endInEST = end.atZone(currZone).withZoneSameInstant(estZone).toLocalDateTime();
 
+        // Grab a Day of week from the converted time
+        // This will be used to ensure that if our appointments tick over 23:59, they will register as out of business hours
         DayOfWeek startingDayOfWeek = startInEST.getDayOfWeek();
         DayOfWeek endingDayOfWeek = endInEST.getDayOfWeek();
 
+        // Set the business hours -1 second and +1 second
         LocalTime businessStartingHour = LocalTime.of(7,59,59);
         LocalTime businessEndingHour = LocalTime.of(22, 0, 1);
 
+        // If the appointment is after start of business but before close of business, ends on the same day it began, and is not Saturday or Sunday, return true.
         return (startInEST.toLocalTime().isAfter(businessStartingHour) && endInEST.toLocalTime().isBefore(businessEndingHour)) &&
                 (endingDayOfWeek == startingDayOfWeek) && !(startingDayOfWeek == DayOfWeek.SATURDAY || startingDayOfWeek == DayOfWeek.SUNDAY);
     }
@@ -331,6 +337,7 @@ public class Appointments {
     public static boolean overlapsWithOtherAppointments(LocalDateTime start, LocalDateTime end) {
 
         for (Appointments appointment : getAllAppointments()) {
+            // Check to see if start and end time overlaps with any other appointments start or end times.
             if (start.isAfter(appointment.getAppointmentStart()) || start.isBefore(appointment.getAppointmentEnd())
                     || end.isAfter(appointment.getAppointmentStart()) || end.isBefore(appointment.getAppointmentEnd())) {
                 return true;

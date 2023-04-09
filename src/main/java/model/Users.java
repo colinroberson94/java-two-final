@@ -85,6 +85,9 @@ public class Users {
     /**
      * Get user object from user ID. Filters through all user objects and returns the first object that matches the provided ID.
      *
+     * A lambda is chosen here instead of a loop as the findFirst method will find the first occurrence and then stop.
+     * This prevents the need to loop through all user objects in the ObservableList. If nothing is found, null is returned.
+     *
      * @param id User ID to search for.
      * @return user object corresponding with provided ID.
      */
